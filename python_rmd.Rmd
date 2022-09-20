@@ -1,0 +1,10 @@
+---
+title: "Python notebook"
+output: html_notebook
+---
+
+
+```{r}
+library(reticulate)
+```
+

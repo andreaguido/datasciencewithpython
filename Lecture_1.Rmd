@@ -1,0 +1,243 @@
+---
+title: "R Notebook"
+output: 
+  html_notebook:
+    toc: true
+    toc_depth: 2
+---
+
+# 1 **Python lists**
+
+## 1.1 Define a list <a name="definealist"></a>
+Python stores information by using lists. These can contain any kind of object.
+
+```{r}
+library(reticulate)
+```
+
+```{python}
+x=1
+y="BSB"
+z=True
+
+# create list
+L1 = [x,y,z]
+print(L1)
+```
+
+even list of lists
+
+
+```{python}
+a=2
+b="Econ"
+c=False
+
+L2 = [a,b,c]
+
+# EXERCISE combine lists
+biglist = [L1, L2]
+
+print(biglist)
+```
+
+Now that you know how to store information into list, how to access to it? Slicing
+
+## 1.2 Slicing <a name="slicing"></a>
+
+```{python}
+biglist[1]
+```
+```{python}
+biglist[1][0:2]
+```
+
+recall the syntax [start (included) : end (excluded) ]
+
+how to add, remove or replace content of a list?
+
+## 1.3 Replacing <a name="replacing"></a>
+
+```{python}
+# replace first element of second list of biglist
+biglist[1][0] = 3
+print(biglist)
+```
+
+## 1.4 Shallow and deep copying <a name="copying"></a>
+Very relevant: assigning a list to another variable does not copy it but it only creates a link
+
+```{python}
+biglist_new = biglist
+print(biglist, biglist_new)
+
+# replace
+biglist_new[0][0] = 4
+
+print(biglist, biglist_new)
+
+biglist is biglist_new # true
+```
+
+```{python}
+import copy # this is how libraries are imported in python
+biglist_sep = copy.deepcopy(biglist)
+biglist_sep[0][0]="Dijon" # replqce 1 witrh DIJON
+print("This is biglist ", biglist, "while this is the new ", biglist_sep) # IT WORKS!
+
+# another method
+biglist_sep2 = biglist.copy
+biglist is biglist_sep2 # false
+```
+
+
+
+# 2 Numpy <a name="np"></a>
+
+NumPy is an open-source Python library that facilitates efficient numerical operations on large quantities of data. The main data structure in this library is the powerful NumPy array, ndarray, which can have any number of dimensions. The NumPy library contains many useful features for performing mathematical and logical operations on these special arrays. NumPy is a part of a set of Python libraries that are used for scientific computing due to its efficient data analysis capabilities.
+
+The advantage of using Np is that it will allow us to perform object-wise calculations, that is we can directly manipulate objects in a list without accessing them individually.
+
+Anoter main advantage of numpy is speed, as well as its compatibility with other libraries and functions.
+Check her for more https://webcourses.ucf.edu/courses/1249560/pages/python-lists-vs-numpy-arrays-what-is-the-difference
+
+Notice: If you don't have it yet, install it ### pip install numpy ###
+If you encounter any issues during the installation, try to install it from jupyter console
+
+## 2.1 1-D arrays <a name="1D"></a>
+```{python}
+import numpy as np
+
+height = [1.80, 1.40, 1.67, 1.90] # this is a list
+height_array = np.array(height) # this is an array
+
+print(height, type(height))
+print(height_array, type(height_array))
+```
+
+performing object-wise operations
+
+```{python}
+print(height_array / 2)
+```
+
+it halved each object! 
+
+What about a list?
+
+```{python}
+print(height / 2) ## expected error
+```
+
+the equivalent is:
+
+```{python}
+[q/2 for q in height]
+```
+
+Relative to lists, np does not deal with collections of objects of different types.
+
+```{python}
+height + ["a"]
+```
+
+### 2.1.1 Subsetting <a name="subsetting1"></a>
+How to subset an array
+
+```{python}
+print(height_array[1])
+```
+
+How to search for objects in np? there is a built-in function for that:
+
+```{python}
+height_array < 1.80
+height_array[height_array<1.80]
+search=np.where(height_array<1.80)
+print(search[0])
+```
+
+## 2.1.2 2D Arrays <a name="2D"></a>
+
+you can think of 2D arrays as an improved version of list of lists. 2D arrays are basically matrices.
+
+Let's create a 2D array by combining weight with the height array
+
+```{python}
+weight_array = np.array([80, 40, 60, 70])
+body_measures = np.array([height_array,weight_array])
+print(body_measures)
+print("Dimensions of array ", body_measures.shape)
+```
+
+### 3.2.1 Subsetting <a name="subsetting2"></a>
+Subsetting a 2D array
+subsetting the element in row 2, col 3
+
+```{python}
+body_measures[1,2]
+```
+
+and all objects in row 1
+
+```{python}
+body_measures[1,:]
+```
+
+### 2.2.2 Aritmetics with 2-D arrays <a name="aritm2"></a>
+
+```{python}
+matrix1=np.array([[1,2,3,4],[1,1,2,2]])
+matrix2=np.array([[4,3,2,1],[2,2,1,1]])
+print(matrix1, "\n\n", matrix2)
+```
+
+object sum
+
+```{python}
+matrix1 + matrix2
+matrix1 * matrix2
+np.transpose(matrix1) @ matrix2
+```
+
+# Homework
+1. Write a NumPy program to convert a list of numeric value into a one-dimensional NumPy array.
+
+Expected Output:
+
+Original List: [12.23, 13.32, 100, 36.32]
+
+One-dimensional NumPy array: [ 12.23 13.32 100. 36.32]
+
+2. Write a NumPy program to create a 3x3 matrix with values ranging from 2 to 10.
+
+hint: 
+ * np.arange(start, end)
+ * reshape method
+
+Expected Output:
+[[ 2 3 4]
+[ 5 6 7]
+[ 8 9 10]]
+
+3. Write a NumPy program to create a null vector of size 10 and update sixth value to 11.
+
+Hint np.zeros
+
+4. Write a NumPy program to reverse an array (first element becomes last).
+
+Original array: arange(1,20)
+
+Hint : list() and reversed() 
+
+5. Write a NumPy program to create a structured array from given student name, height, class and their data types. Now sort the array on height.
+
+If the data type is structured data type, an aggregate of other data types, (e.g., describing an array item consisting of an integer and a float), what are the names of the “fields” of the structure, by which they can be accessed, what is the data-type of each field, and which part of the memory block each field takes.
+
+Hint:
+   * to create a structured array np.array(x, dtype=data_type_list)
+   
+use the following:
+
+data_type = [('name', 'S15'), ('class', int), ('height', float)]
+students_details = [('James', 5, 48.5), ('Nail', 6, 52.5),('Paul', 5, 42.10), ('Pit', 5, 40.11)]
