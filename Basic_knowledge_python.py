@@ -9,11 +9,12 @@ print(2 ** 3)
 print(4/2)
 
 # If statements (and indentation)
-x = 14
+x = 9
 if x < 10 :
-    print("it is lower than 10")
+  print("it is lower than 10")
+  print("DIJON")
 else :
-        print("It is higher than 10")
+  print("It is higher than 10")
         
 pass # only for displaying
 
@@ -42,7 +43,7 @@ type(z)
 
 ## sorting
 a_unsorted = [88, 5, 7, 45]
-a_sorted = sorted(a_unsorted)
+a_sorted = sorted(a_unsorted, reverse = True)
 print("this is unsorted ", a_unsorted, " and this is sorted ", a_sorted)
 
 ## Methods are functuions that apply to specific objects. these are called by object.method()
@@ -71,8 +72,8 @@ r.replace("A", "U")
 ## Dictionaries are used to store data values in key:value pairs.
 
 thisdict = {
-  "brand": "Ford",
-  "model": "Mustang",
-  "year": 1964
+  "brand": ["Ford","Citroen"],
+  "model": ["Mustang","C3"],
+  "year": [1964,2003]
 }
 print(thisdict)
