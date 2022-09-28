@@ -35,7 +35,7 @@ pass
 ## a function is a piece of reusable code that performs a particular task.
 round(3.15, 0)
 
-## types and coercions
+## types and coercions (see https://jakevdp.github.io/PythonDataScienceHandbook/02.01-understanding-data-types.html#A-Python-Integer-Is-More-Than-Just-an-Integer)
 type(x)
 z=int(u)
 type(z)

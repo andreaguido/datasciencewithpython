@@ -25,7 +25,7 @@ L1 = [x,y,z]
 print(L1)
 ```
 
-even list of lists
+even list of lists (tuples)
 
 
 ```{python}
@@ -183,7 +183,13 @@ and all objects in row 1
 ```{python}
 body_measures[1,:]
 ```
+### To go further
 
+- data types : https://jakevdp.github.io/PythonDataScienceHandbook/02.01-understanding-data-types.html#NumPy-Standard-Data-Types
+
+- difference between Python and Numpy lists : https://jakevdp.github.io/PythonDataScienceHandbook/02.01-understanding-data-types.html#A-Python-List-Is-More-Than-Just-a-List
+
+- attributes : https://jakevdp.github.io/PythonDataScienceHandbook/02.02-the-basics-of-numpy-arrays.html#NumPy-Array-Attributes
 ### 2.2.2 Aritmetics with 2-D arrays <a name="aritm2"></a>
 
 ```{python}
