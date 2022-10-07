@@ -11,11 +11,11 @@ output:
 ## 1.1 Define a list <a name="definealist"></a>
 Python stores information by using lists. These can contain any kind of object.
 
-```{r}
+```{r Import_library, echo=FALSE, message=TRUE, warning=FALSE}
 library(reticulate)
 ```
 
-```{python}
+```{python echo=TRUE}
 x=1
 y="BSB"
 z=True
@@ -72,7 +72,7 @@ biglist_new = biglist
 print(biglist, biglist_new)
 
 # replace
-biglist_new[0][0] = 4
+biglist[0][0] = 4
 
 print(biglist, biglist_new)
 
@@ -102,7 +102,6 @@ Anoter main advantage of numpy is speed, as well as its compatibility with other
 Check her for more https://webcourses.ucf.edu/courses/1249560/pages/python-lists-vs-numpy-arrays-what-is-the-difference
 
 Notice: If you don't have it yet, install it ### pip install numpy ###
-If you encounter any issues during the installation, try to install it from jupyter console
 
 ## 2.1 1-D arrays <a name="1D"></a>
 ```{python}
@@ -154,7 +153,8 @@ How to search for objects in np? there is a built-in function for that:
 height_array < 1.80
 height_array[height_array<1.80]
 search=np.where(height_array<1.80)
-print(search[0])
+print(search)
+height_array[search]
 ```
 
 ## 2.1.2 2D Arrays <a name="2D"></a>
@@ -251,3 +251,17 @@ use the following:
 
 data_type = [('name', 'S15'), ('class', int), ('height', float)]
 students_details = [('James', 5, 48.5), ('Nail', 6, 52.5),('Paul', 5, 42.10), ('Pit', 5, 40.11)]
+
+)
+```{python}
+student_info=(['James','5','48.5'],['Nail','6','52.5'],['Paul','5','42.1'],['Pit','5','40.11'])
+student_info_array=np.array(student_info)
+student_info_array[student_info_array[:, 2].argsort()]
+print([student_info_array[:, 2].argsort()])
+
+```
+
+
+
+
+

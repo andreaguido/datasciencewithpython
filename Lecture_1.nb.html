@@ -239,9 +239,6 @@ pre code {
 <p>Python stores information by using lists. These can contain any kind of object.</p>
 <!-- rnb-text-end -->
 <!-- rnb-chunk-begin -->
-<!-- rnb-source-begin eyJkYXRhIjoiYGBgclxubGlicmFyeShyZXRpY3VsYXRlKVxuYGBgIn0= -->
-<pre class="r"><code>library(reticulate)</code></pre>
-<!-- rnb-source-end -->
 <!-- rnb-chunk-end -->
 <!-- rnb-text-begin -->
 <!-- rnb-text-end -->
@@ -255,6 +252,9 @@ z=True
 L1 = [x,y,z]
 print(L1)</code></pre>
 <!-- rnb-source-end -->
+<!-- rnb-output-begin eyJkYXRhIjoiWzEsICdCU0InLCBUcnVlXVxuIn0= -->
+<pre><code>[1, &#39;BSB&#39;, True]</code></pre>
+<!-- rnb-output-end -->
 <!-- rnb-chunk-end -->
 <!-- rnb-text-begin -->
 <p>even list of lists (tuples)</p>
@@ -272,6 +272,9 @@ biglist = [L1, L2]
 
 print(biglist)</code></pre>
 <!-- rnb-source-end -->
+<!-- rnb-output-begin eyJkYXRhIjoiW1s0LCAnQlNCJywgVHJ1ZV0sIFsyLCAnRWNvbicsIEZhbHNlXV1cbiJ9 -->
+<pre><code>[[4, &#39;BSB&#39;, True], [2, &#39;Econ&#39;, False]]</code></pre>
+<!-- rnb-output-end -->
 <!-- rnb-chunk-end -->
 <!-- rnb-text-begin -->
 <p>Now that you know how to store information into list, how to access to it? Slicing</p>
@@ -283,11 +286,17 @@ print(biglist)</code></pre>
 <!-- rnb-source-begin eyJkYXRhIjoiYGBgcHl0aG9uXG5iaWdsaXN0WzFdXG5gYGAifQ== -->
 <pre class="python"><code>biglist[1]</code></pre>
 <!-- rnb-source-end -->
+<!-- rnb-output-begin eyJkYXRhIjoiWzIsICdFY29uJywgRmFsc2VdXG4ifQ== -->
+<pre><code>[2, &#39;Econ&#39;, False]</code></pre>
+<!-- rnb-output-end -->
 <!-- rnb-chunk-end -->
 <!-- rnb-chunk-begin -->
 <!-- rnb-source-begin eyJkYXRhIjoiYGBgcHl0aG9uXG5iaWdsaXN0WzFdWzA6Ml1cbmBgYCJ9 -->
 <pre class="python"><code>biglist[1][0:2]</code></pre>
 <!-- rnb-source-end -->
+<!-- rnb-output-begin eyJkYXRhIjoiWzIsICdFY29uJ11cbiJ9 -->
+<pre><code>[2, &#39;Econ&#39;]</code></pre>
+<!-- rnb-output-end -->
 <!-- rnb-chunk-end -->
 <!-- rnb-text-begin -->
 <p>recall the syntax [start (included) : end (excluded) ]</p>
@@ -302,6 +311,9 @@ print(biglist)</code></pre>
 biglist[1][0] = 3
 print(biglist)</code></pre>
 <!-- rnb-source-end -->
+<!-- rnb-output-begin eyJkYXRhIjoiW1s0LCAnQlNCJywgVHJ1ZV0sIFszLCAnRWNvbicsIEZhbHNlXV1cbiJ9 -->
+<pre><code>[[4, &#39;BSB&#39;, True], [3, &#39;Econ&#39;, False]]</code></pre>
+<!-- rnb-output-end -->
 <!-- rnb-chunk-end -->
 <!-- rnb-text-begin -->
 </div>
@@ -310,31 +322,39 @@ print(biglist)</code></pre>
 <p>Very relevant: assigning a list to another variable does not copy it but it only creates a link</p>
 <!-- rnb-text-end -->
 <!-- rnb-chunk-begin -->
-<!-- rnb-source-begin eyJkYXRhIjoiYGBgcHl0aG9uXG5iaWdsaXN0X25ldyA9IGJpZ2xpc3RcbnByaW50KGJpZ2xpc3QsIGJpZ2xpc3RfbmV3KVxuXG4jIHJlcGxhY2VcbmJpZ2xpc3RfbmV3WzBdWzBdID0gNFxuXG5wcmludChiaWdsaXN0LCBiaWdsaXN0X25ldylcblxuYmlnbGlzdCBpcyBiaWdsaXN0X25ldyAjIHRydWVcbmBgYCJ9 -->
+<!-- rnb-source-begin eyJkYXRhIjoiYGBgcHl0aG9uXG5iaWdsaXN0X25ldyA9IGJpZ2xpc3RcbnByaW50KGJpZ2xpc3QsIGJpZ2xpc3RfbmV3KVxuYGBgIn0= -->
 <pre class="python"><code>biglist_new = biglist
-print(biglist, biglist_new)
-
-# replace
-biglist_new[0][0] = 4
-
-print(biglist, biglist_new)
-
-biglist is biglist_new # true</code></pre>
+print(biglist, biglist_new)</code></pre>
 <!-- rnb-source-end -->
+<!-- rnb-output-begin eyJkYXRhIjoiW1s0LCAnQlNCJywgVHJ1ZV0sIFszLCAnRWNvbicsIEZhbHNlXV0gW1s0LCAnQlNCJywgVHJ1ZV0sIFszLCAnRWNvbicsIEZhbHNlXV1cbiJ9 -->
+<pre><code>[[4, &#39;BSB&#39;, True], [3, &#39;Econ&#39;, False]] [[4, &#39;BSB&#39;, True], [3, &#39;Econ&#39;, False]]</code></pre>
+<!-- rnb-output-end -->
+<!-- rnb-source-begin eyJkYXRhIjoiYGBgcHl0aG9uXG4jIHJlcGxhY2VcbmJpZ2xpc3RbMF1bMF0gPSA0XG5cbnByaW50KGJpZ2xpc3QsIGJpZ2xpc3RfbmV3KVxuYGBgIn0= -->
+<pre class="python"><code># replace
+biglist[0][0] = 4
+
+print(biglist, biglist_new)</code></pre>
+<!-- rnb-source-end -->
+<!-- rnb-output-begin eyJkYXRhIjoiW1s0LCAnQlNCJywgVHJ1ZV0sIFszLCAnRWNvbicsIEZhbHNlXV0gW1s0LCAnQlNCJywgVHJ1ZV0sIFszLCAnRWNvbicsIEZhbHNlXV1cbiJ9 -->
+<pre><code>[[4, &#39;BSB&#39;, True], [3, &#39;Econ&#39;, False]] [[4, &#39;BSB&#39;, True], [3, &#39;Econ&#39;, False]]</code></pre>
+<!-- rnb-output-end -->
+<!-- rnb-source-begin eyJkYXRhIjoiYGBgcHl0aG9uXG5iaWdsaXN0IGlzIGJpZ2xpc3RfbmV3ICMgdHJ1ZVxuYGBgIn0= -->
+<pre class="python"><code>biglist is biglist_new # true</code></pre>
+<!-- rnb-source-end -->
+<!-- rnb-output-begin eyJkYXRhIjoiVHJ1ZVxuIn0= -->
+<pre><code>True</code></pre>
+<!-- rnb-output-end -->
 <!-- rnb-chunk-end -->
 <!-- rnb-text-begin -->
 <!-- rnb-text-end -->
 <!-- rnb-chunk-begin -->
-<!-- rnb-source-begin eyJkYXRhIjoiYGBgcHl0aG9uXG5pbXBvcnQgY29weSAjIHRoaXMgaXMgaG93IGxpYnJhcmllcyBhcmUgaW1wb3J0ZWQgaW4gcHl0aG9uXG5iaWdsaXN0X3NlcCA9IGNvcHkuZGVlcGNvcHkoYmlnbGlzdClcbmJpZ2xpc3Rfc2VwWzBdWzBdPVwiRGlqb25cIiAjIHJlcGxxY2UgMSB3aXRyaCBESUpPTlxucHJpbnQoXCJUaGlzIGlzIGJpZ2xpc3QgXCIsIGJpZ2xpc3QsIFwid2hpbGUgdGhpcyBpcyB0aGUgbmV3IFwiLCBiaWdsaXN0X3NlcCkgIyBJVCBXT1JLUyFcblxuIyBhbm90aGVyIG1ldGhvZFxuYmlnbGlzdF9zZXAyID0gYmlnbGlzdC5jb3B5XG5iaWdsaXN0IGlzIGJpZ2xpc3Rfc2VwMiAjIGZhbHNlXG5gYGAifQ== -->
-<pre class="python"><code>import copy # this is how libraries are imported in python
-biglist_sep = copy.deepcopy(biglist)
-biglist_sep[0][0]=&quot;Dijon&quot; # replqce 1 witrh DIJON
-print(&quot;This is biglist &quot;, biglist, &quot;while this is the new &quot;, biglist_sep) # IT WORKS!
-
-# another method
-biglist_sep2 = biglist.copy
-biglist is biglist_sep2 # false</code></pre>
+<!-- rnb-source-begin eyJkYXRhIjoiYGBgcHl0aG9uXG5wcmludChcIlRoaXMgaXMgYmlnbGlzdCBcIiwgYmlnbGlzdCwgXCJ3aGlsZSB0aGlzIGlzIHRoZSBuZXcgXCIsIGJpZ2xpc3Rfc2VwKSAjIElUIFdPUktTIVxuXG5gYGAifQ== -->
+<pre class="python"><code>print(&quot;This is biglist &quot;, biglist, &quot;while this is the new &quot;, biglist_sep) # IT WORKS!
+</code></pre>
 <!-- rnb-source-end -->
+<!-- rnb-output-begin eyJkYXRhIjoiVGhpcyBpcyBiaWdsaXN0ICBbWzQsICdCU0InLCBUcnVlXSwgWzMsICdFY29uJywgRmFsc2VdXSB3aGlsZSB0aGlzIGlzIHRoZSBuZXcgIFtbJ0Rpam9uJywgJ0JTQicsIFRydWVdLCBbMywgJ0Vjb24nLCBGYWxzZV1dXG4ifQ== -->
+<pre><code>This is biglist  [[4, &#39;BSB&#39;, True], [3, &#39;Econ&#39;, False]] while this is the new  [[&#39;Dijon&#39;, &#39;BSB&#39;, True], [3, &#39;Econ&#39;, False]]</code></pre>
+<!-- rnb-output-end -->
 <!-- rnb-chunk-end -->
 <!-- rnb-text-begin -->
 </div>
@@ -344,53 +364,73 @@ biglist is biglist_sep2 # false</code></pre>
 <p>NumPy is an open-source Python library that facilitates efficient numerical operations on large quantities of data. The main data structure in this library is the powerful NumPy array, ndarray, which can have any number of dimensions. The NumPy library contains many useful features for performing mathematical and logical operations on these special arrays. NumPy is a part of a set of Python libraries that are used for scientific computing due to its efficient data analysis capabilities.</p>
 <p>The advantage of using Np is that it will allow us to perform object-wise calculations, that is we can directly manipulate objects in a list without accessing them individually.</p>
 <p>Anoter main advantage of numpy is speed, as well as its compatibility with other libraries and functions. Check her for more <a href="https://webcourses.ucf.edu/courses/1249560/pages/python-lists-vs-numpy-arrays-what-is-the-difference" class="uri">https://webcourses.ucf.edu/courses/1249560/pages/python-lists-vs-numpy-arrays-what-is-the-difference</a></p>
-<p>Notice: If you don’t have it yet, install it ### pip install numpy ### If you encounter any issues during the installation, try to install it from jupyter console</p>
+<p>Notice: If you don’t have it yet, install it ### pip install numpy ###</p>
 <div id="d-arrays" class="section level2">
 <h2>2.1 1-D arrays <a name="1D"></a></h2>
 <!-- rnb-text-end -->
 <!-- rnb-chunk-begin -->
-<!-- rnb-source-begin eyJkYXRhIjoiYGBgcHl0aG9uXG5pbXBvcnQgbnVtcHkgYXMgbnBcblxuaGVpZ2h0ID0gWzEuODAsIDEuNDAsIDEuNjcsIDEuOTBdICMgdGhpcyBpcyBhIGxpc3RcbmhlaWdodF9hcnJheSA9IG5wLmFycmF5KGhlaWdodCkgIyB0aGlzIGlzIGFuIGFycmF5XG5cbnByaW50KGhlaWdodCwgdHlwZShoZWlnaHQpKVxucHJpbnQoaGVpZ2h0X2FycmF5LCB0eXBlKGhlaWdodF9hcnJheSkpXG5gYGAifQ== -->
-<pre class="python"><code>import numpy as np
-
-height = [1.80, 1.40, 1.67, 1.90] # this is a list
-height_array = np.array(height) # this is an array
-
-print(height, type(height))
-print(height_array, type(height_array))</code></pre>
+<!-- rnb-source-begin eyJkYXRhIjoiYGBgcHl0aG9uXG5wcmludChoZWlnaHQsIHR5cGUoaGVpZ2h0KSlcblxuYGBgIn0= -->
+<pre class="python"><code>print(height, type(height))
+</code></pre>
 <!-- rnb-source-end -->
+<!-- rnb-output-begin eyJkYXRhIjoiWzEuOCwgMS40LCAxLjY3LCAxLjldIDxjbGFzcyAnbGlzdCc+XG4ifQ== -->
+<pre><code>[1.8, 1.4, 1.67, 1.9] &lt;class &#39;list&#39;&gt;</code></pre>
+<!-- rnb-output-end -->
+<!-- rnb-source-begin eyJkYXRhIjoiYGBgcHl0aG9uXG5wcmludChoZWlnaHRfYXJyYXksIHR5cGUoaGVpZ2h0X2FycmF5KSlcbmBgYCJ9 -->
+<pre class="python"><code>print(height_array, type(height_array))</code></pre>
+<!-- rnb-source-end -->
+<!-- rnb-output-begin eyJkYXRhIjoiWzEuOCAgMS40ICAxLjY3IDEuOSBdIDxjbGFzcyAnbnVtcHkubmRhcnJheSc+XG4ifQ== -->
+<pre><code>[1.8  1.4  1.67 1.9 ] &lt;class &#39;numpy.ndarray&#39;&gt;</code></pre>
+<!-- rnb-output-end -->
 <!-- rnb-chunk-end -->
 <!-- rnb-text-begin -->
 <p>performing object-wise operations</p>
 <!-- rnb-text-end -->
 <!-- rnb-chunk-begin -->
-<!-- rnb-source-begin eyJkYXRhIjoiYGBgcHl0aG9uXG5wcmludChoZWlnaHRfYXJyYXkgLyAyKVxuYGBgIn0= -->
-<pre class="python"><code>print(height_array / 2)</code></pre>
+<!-- rnb-source-begin eyJkYXRhIjoiYGBgcHl0aG9uXG5oZWlnaHRfYXJyYXkgLyAyXG5cbmBgYCJ9 -->
+<pre class="python"><code>height_array / 2
+</code></pre>
 <!-- rnb-source-end -->
+<!-- rnb-output-begin eyJkYXRhIjoiYXJyYXkoWzAuOSAgLCAwLjcgICwgMC44MzUsIDAuOTUgXSlcbiJ9 -->
+<pre><code>array([0.9  , 0.7  , 0.835, 0.95 ])</code></pre>
+<!-- rnb-output-end -->
 <!-- rnb-chunk-end -->
 <!-- rnb-text-begin -->
 <p>it halved each object!</p>
 <p>What about a list?</p>
 <!-- rnb-text-end -->
 <!-- rnb-chunk-begin -->
-<!-- rnb-source-begin eyJkYXRhIjoiYGBgcHl0aG9uXG5wcmludChoZWlnaHQgLyAyKSAjIyBleHBlY3RlZCBlcnJvclxuYGBgIn0= -->
-<pre class="python"><code>print(height / 2) ## expected error</code></pre>
+<!-- rnb-source-begin eyJkYXRhIjoiYGBgcHl0aG9uXG5wcmludChoZWlnaHQgLyAyKSAjIyBleHBlY3RlZCBlcnJvclxuXG5gYGAifQ== -->
+<pre class="python"><code>print(height / 2) ## expected error
+</code></pre>
 <!-- rnb-source-end -->
+<!-- rnb-output-begin eyJkYXRhIjoiVHlwZUVycm9yOiB1bnN1cHBvcnRlZCBvcGVyYW5kIHR5cGUocykgZm9yIC86ICdsaXN0JyBhbmQgJ2ludCdcbiJ9 -->
+<pre><code>TypeError: unsupported operand type(s) for /: &#39;list&#39; and &#39;int&#39;</code></pre>
+<!-- rnb-output-end -->
 <!-- rnb-chunk-end -->
 <!-- rnb-text-begin -->
 <p>the equivalent is:</p>
 <!-- rnb-text-end -->
 <!-- rnb-chunk-begin -->
-<!-- rnb-source-begin eyJkYXRhIjoiYGBgcHl0aG9uXG5bcS8yIGZvciBxIGluIGhlaWdodF1cbmBgYCJ9 -->
-<pre class="python"><code>[q/2 for q in height]</code></pre>
+<!-- rnb-source-begin eyJkYXRhIjoiYGBgcHl0aG9uXG5bcS8yIGZvciBxIGluIGhlaWdodF1cblxuYGBgIn0= -->
+<pre class="python"><code>[q/2 for q in height]
+</code></pre>
 <!-- rnb-source-end -->
+<!-- rnb-output-begin eyJkYXRhIjoiWzAuOSwgMC43LCAwLjgzNSwgMC45NV1cbiJ9 -->
+<pre><code>[0.9, 0.7, 0.835, 0.95]</code></pre>
+<!-- rnb-output-end -->
 <!-- rnb-chunk-end -->
 <!-- rnb-text-begin -->
 <p>Relative to lists, np does not deal with collections of objects of different types.</p>
 <!-- rnb-text-end -->
 <!-- rnb-chunk-begin -->
-<!-- rnb-source-begin eyJkYXRhIjoiYGBgcHl0aG9uXG5oZWlnaHQgKyBbXCJhXCJdXG5gYGAifQ== -->
-<pre class="python"><code>height + [&quot;a&quot;]</code></pre>
+<!-- rnb-source-begin eyJkYXRhIjoiYGBgcHl0aG9uXG5oZWlnaHQgKyBbXCJhXCJdXG5cbmBgYCJ9 -->
+<pre class="python"><code>height + [&quot;a&quot;]
+</code></pre>
 <!-- rnb-source-end -->
+<!-- rnb-output-begin eyJkYXRhIjoiWzEuOCwgMS40LCAxLjY3LCAxLjksICdhJ11cbiJ9 -->
+<pre><code>[1.8, 1.4, 1.67, 1.9, &#39;a&#39;]</code></pre>
+<!-- rnb-output-end -->
 <!-- rnb-chunk-end -->
 <!-- rnb-text-begin -->
 <div id="subsetting" class="section level3">
@@ -398,20 +438,25 @@ print(height_array, type(height_array))</code></pre>
 <p>How to subset an array</p>
 <!-- rnb-text-end -->
 <!-- rnb-chunk-begin -->
-<!-- rnb-source-begin eyJkYXRhIjoiYGBgcHl0aG9uXG5wcmludChoZWlnaHRfYXJyYXlbMV0pXG5gYGAifQ== -->
-<pre class="python"><code>print(height_array[1])</code></pre>
+<!-- rnb-source-begin eyJkYXRhIjoiYGBgcHl0aG9uXG5wcmludChoZWlnaHRfYXJyYXlbMV0pXG5cbmBgYCJ9 -->
+<pre class="python"><code>print(height_array[1])
+</code></pre>
 <!-- rnb-source-end -->
+<!-- rnb-output-begin eyJkYXRhIjoiMS40XG4ifQ== -->
+<pre><code>1.4</code></pre>
+<!-- rnb-output-end -->
 <!-- rnb-chunk-end -->
 <!-- rnb-text-begin -->
 <p>How to search for objects in np? there is a built-in function for that:</p>
 <!-- rnb-text-end -->
 <!-- rnb-chunk-begin -->
-<!-- rnb-source-begin eyJkYXRhIjoiYGBgcHl0aG9uXG5oZWlnaHRfYXJyYXkgPCAxLjgwXG5oZWlnaHRfYXJyYXlbaGVpZ2h0X2FycmF5PDEuODBdXG5zZWFyY2g9bnAud2hlcmUoaGVpZ2h0X2FycmF5PDEuODApXG5wcmludChzZWFyY2hbMF0pXG5gYGAifQ== -->
-<pre class="python"><code>height_array &lt; 1.80
-height_array[height_array&lt;1.80]
-search=np.where(height_array&lt;1.80)
-print(search[0])</code></pre>
+<!-- rnb-source-begin eyJkYXRhIjoiYGBgcHl0aG9uXG5oZWlnaHRfYXJyYXlbc2VhcmNoXVxuXG5gYGAifQ== -->
+<pre class="python"><code>height_array[search]
+</code></pre>
 <!-- rnb-source-end -->
+<!-- rnb-output-begin eyJkYXRhIjoiYXJyYXkoWzEuNCAsIDEuNjddKVxuIn0= -->
+<pre><code>array([1.4 , 1.67])</code></pre>
+<!-- rnb-output-end -->
 <!-- rnb-chunk-end -->
 <!-- rnb-text-begin -->
 </div>
@@ -422,12 +467,14 @@ print(search[0])</code></pre>
 <p>Let’s create a 2D array by combining weight with the height array</p>
 <!-- rnb-text-end -->
 <!-- rnb-chunk-begin -->
-<!-- rnb-source-begin eyJkYXRhIjoiYGBgcHl0aG9uXG53ZWlnaHRfYXJyYXkgPSBucC5hcnJheShbODAsIDQwLCA2MCwgNzBdKVxuYm9keV9tZWFzdXJlcyA9IG5wLmFycmF5KFtoZWlnaHRfYXJyYXksd2VpZ2h0X2FycmF5XSlcbnByaW50KGJvZHlfbWVhc3VyZXMpXG5wcmludChcIkRpbWVuc2lvbnMgb2YgYXJyYXkgXCIsIGJvZHlfbWVhc3VyZXMuc2hhcGUpXG5gYGAifQ== -->
-<pre class="python"><code>weight_array = np.array([80, 40, 60, 70])
-body_measures = np.array([height_array,weight_array])
-print(body_measures)
-print(&quot;Dimensions of array &quot;, body_measures.shape)</code></pre>
+<!-- rnb-source-begin eyJkYXRhIjoiYGBgcHl0aG9uXG5wcmludChib2R5X21lYXN1cmVzKVxuXG5gYGAifQ== -->
+<pre class="python"><code>print(body_measures)
+</code></pre>
 <!-- rnb-source-end -->
+<!-- rnb-output-begin eyJkYXRhIjoiW1sgMS44ICAgMS40ICAgMS42NyAgMS45IF1cbiBbODAuICAgNDAuICAgNjAuICAgNzAuICBdXVxuIn0= -->
+<pre><code>[[ 1.8   1.4   1.67  1.9 ]
+ [80.   40.   60.   70.  ]]</code></pre>
+<!-- rnb-output-end -->
 <!-- rnb-chunk-end -->
 <!-- rnb-text-begin -->
 <div id="subsetting-1" class="section level3">
@@ -435,17 +482,25 @@ print(&quot;Dimensions of array &quot;, body_measures.shape)</code></pre>
 <p>Subsetting a 2D array subsetting the element in row 2, col 3</p>
 <!-- rnb-text-end -->
 <!-- rnb-chunk-begin -->
-<!-- rnb-source-begin eyJkYXRhIjoiYGBgcHl0aG9uXG5ib2R5X21lYXN1cmVzWzEsMl1cbmBgYCJ9 -->
-<pre class="python"><code>body_measures[1,2]</code></pre>
+<!-- rnb-source-begin eyJkYXRhIjoiYGBgcHl0aG9uXG5ib2R5X21lYXN1cmVzWzEsMl1cblxuYGBgIn0= -->
+<pre class="python"><code>body_measures[1,2]
+</code></pre>
 <!-- rnb-source-end -->
+<!-- rnb-output-begin eyJkYXRhIjoiNjAuMFxuIn0= -->
+<pre><code>60.0</code></pre>
+<!-- rnb-output-end -->
 <!-- rnb-chunk-end -->
 <!-- rnb-text-begin -->
 <p>and all objects in row 1</p>
 <!-- rnb-text-end -->
 <!-- rnb-chunk-begin -->
-<!-- rnb-source-begin eyJkYXRhIjoiYGBgcHl0aG9uXG5ib2R5X21lYXN1cmVzWzEsOl1cbmBgYCJ9 -->
-<pre class="python"><code>body_measures[1,:]</code></pre>
+<!-- rnb-source-begin eyJkYXRhIjoiYGBgcHl0aG9uXG5ib2R5X21lYXN1cmVzWzEsOl1cblxuYGBgIn0= -->
+<pre class="python"><code>body_measures[1,:]
+</code></pre>
 <!-- rnb-source-end -->
+<!-- rnb-output-begin eyJkYXRhIjoiYXJyYXkoWzgwLiwgNDAuLCA2MC4sIDcwLl0pXG4ifQ== -->
+<pre><code>array([80., 40., 60., 70.])</code></pre>
+<!-- rnb-output-end -->
 <!-- rnb-chunk-end -->
 <!-- rnb-text-begin -->
 </div>
@@ -509,10 +564,32 @@ np.transpose(matrix1) @ matrix2</code></pre>
 <p>Hint: * to create a structured array np.array(x, dtype=data_type_list)</p>
 <p>use the following:</p>
 <p>data_type = [(‘name’, ‘S15’), (‘class’, int), (‘height’, float)] students_details = [(‘James’, 5, 48.5), (‘Nail’, 6, 52.5),(‘Paul’, 5, 42.10), (‘Pit’, 5, 40.11)]</p>
+<p>)</p>
+<!-- rnb-text-end -->
+<!-- rnb-chunk-begin -->
+<!-- rnb-source-begin eyJkYXRhIjoiYGBgcHl0aG9uXG5zdHVkZW50X2luZm89KFsnSmFtZXMnLCc1JywnNDguNSddLFsnTmFpbCcsJzYnLCc1Mi41J10sWydQYXVsJywnNScsJzQyLjEnXSxbJ1BpdCcsJzUnLCc0MC4xMSddKVxuc3R1ZGVudF9pbmZvX2FycmF5PW5wLmFycmF5KHN0dWRlbnRfaW5mbylcbnN0dWRlbnRfaW5mb19hcnJheVtzdHVkZW50X2luZm9fYXJyYXlbOiwgMl0uYXJnc29ydCgpXVxuYGBgIn0= -->
+<pre class="python"><code>student_info=([&#39;James&#39;,&#39;5&#39;,&#39;48.5&#39;],[&#39;Nail&#39;,&#39;6&#39;,&#39;52.5&#39;],[&#39;Paul&#39;,&#39;5&#39;,&#39;42.1&#39;],[&#39;Pit&#39;,&#39;5&#39;,&#39;40.11&#39;])
+student_info_array=np.array(student_info)
+student_info_array[student_info_array[:, 2].argsort()]</code></pre>
+<!-- rnb-source-end -->
+<!-- rnb-output-begin eyJkYXRhIjoiYXJyYXkoW1snUGl0JywgJzUnLCAnNDAuMTEnXSxcbiAgICAgICBbJ1BhdWwnLCAnNScsICc0Mi4xJ10sXG4gICAgICAgWydKYW1lcycsICc1JywgJzQ4LjUnXSxcbiAgICAgICBbJ05haWwnLCAnNicsICc1Mi41J11dLCBkdHlwZT0nPFU1JylcbiJ9 -->
+<pre><code>array([[&#39;Pit&#39;, &#39;5&#39;, &#39;40.11&#39;],
+       [&#39;Paul&#39;, &#39;5&#39;, &#39;42.1&#39;],
+       [&#39;James&#39;, &#39;5&#39;, &#39;48.5&#39;],
+       [&#39;Nail&#39;, &#39;6&#39;, &#39;52.5&#39;]], dtype=&#39;&lt;U5&#39;)</code></pre>
+<!-- rnb-output-end -->
+<!-- rnb-source-begin eyJkYXRhIjoiYGBgcHl0aG9uXG5wcmludChbc3R1ZGVudF9pbmZvX2FycmF5WzosIDJdLmFyZ3NvcnQoKV0pXG5gYGAifQ== -->
+<pre class="python"><code>print([student_info_array[:, 2].argsort()])</code></pre>
+<!-- rnb-source-end -->
+<!-- rnb-output-begin eyJkYXRhIjoiW2FycmF5KFszLCAyLCAwLCAxXSwgZHR5cGU9aW50NjQpXVxuIn0= -->
+<pre><code>[array([3, 2, 0, 1], dtype=int64)]</code></pre>
+<!-- rnb-output-end -->
+<!-- rnb-chunk-end -->
+<!-- rnb-text-begin -->
 <!-- rnb-text-end -->
 </div>
 
-<div id="rmd-source-code">LS0tDQp0aXRsZTogIlIgTm90ZWJvb2siDQpvdXRwdXQ6IA0KICBodG1sX25vdGVib29rOg0KICAgIHRvYzogdHJ1ZQ0KICAgIHRvY19kZXB0aDogMg0KLS0tDQoNCiMgMSAqKlB5dGhvbiBsaXN0cyoqDQoNCiMjIDEuMSBEZWZpbmUgYSBsaXN0IDxhIG5hbWU9ImRlZmluZWFsaXN0Ij48L2E+DQpQeXRob24gc3RvcmVzIGluZm9ybWF0aW9uIGJ5IHVzaW5nIGxpc3RzLiBUaGVzZSBjYW4gY29udGFpbiBhbnkga2luZCBvZiBvYmplY3QuDQoNCmBgYHtyfQ0KbGlicmFyeShyZXRpY3VsYXRlKQ0KYGBgDQoNCmBgYHtweXRob259DQp4PTENCnk9IkJTQiINCno9VHJ1ZQ0KDQojIGNyZWF0ZSBsaXN0DQpMMSA9IFt4LHksel0NCnByaW50KEwxKQ0KYGBgDQoNCmV2ZW4gbGlzdCBvZiBsaXN0cyAodHVwbGVzKQ0KDQoNCmBgYHtweXRob259DQphPTINCmI9IkVjb24iDQpjPUZhbHNlDQoNCkwyID0gW2EsYixjXQ0KDQojIEVYRVJDSVNFIGNvbWJpbmUgbGlzdHMNCmJpZ2xpc3QgPSBbTDEsIEwyXQ0KDQpwcmludChiaWdsaXN0KQ0KYGBgDQoNCk5vdyB0aGF0IHlvdSBrbm93IGhvdyB0byBzdG9yZSBpbmZvcm1hdGlvbiBpbnRvIGxpc3QsIGhvdyB0byBhY2Nlc3MgdG8gaXQ/IFNsaWNpbmcNCg0KIyMgMS4yIFNsaWNpbmcgPGEgbmFtZT0ic2xpY2luZyI+PC9hPg0KDQpgYGB7cHl0aG9ufQ0KYmlnbGlzdFsxXQ0KYGBgDQpgYGB7cHl0aG9ufQ0KYmlnbGlzdFsxXVswOjJdDQpgYGANCg0KcmVjYWxsIHRoZSBzeW50YXggW3N0YXJ0IChpbmNsdWRlZCkgOiBlbmQgKGV4Y2x1ZGVkKSBdDQoNCmhvdyB0byBhZGQsIHJlbW92ZSBvciByZXBsYWNlIGNvbnRlbnQgb2YgYSBsaXN0Pw0KDQojIyAxLjMgUmVwbGFjaW5nIDxhIG5hbWU9InJlcGxhY2luZyI+PC9hPg0KDQpgYGB7cHl0aG9ufQ0KIyByZXBsYWNlIGZpcnN0IGVsZW1lbnQgb2Ygc2Vjb25kIGxpc3Qgb2YgYmlnbGlzdA0KYmlnbGlzdFsxXVswXSA9IDMNCnByaW50KGJpZ2xpc3QpDQpgYGANCg0KIyMgMS40IFNoYWxsb3cgYW5kIGRlZXAgY29weWluZyA8YSBuYW1lPSJjb3B5aW5nIj48L2E+DQpWZXJ5IHJlbGV2YW50OiBhc3NpZ25pbmcgYSBsaXN0IHRvIGFub3RoZXIgdmFyaWFibGUgZG9lcyBub3QgY29weSBpdCBidXQgaXQgb25seSBjcmVhdGVzIGEgbGluaw0KDQpgYGB7cHl0aG9ufQ0KYmlnbGlzdF9uZXcgPSBiaWdsaXN0DQpwcmludChiaWdsaXN0LCBiaWdsaXN0X25ldykNCg0KIyByZXBsYWNlDQpiaWdsaXN0X25ld1swXVswXSA9IDQNCg0KcHJpbnQoYmlnbGlzdCwgYmlnbGlzdF9uZXcpDQoNCmJpZ2xpc3QgaXMgYmlnbGlzdF9uZXcgIyB0cnVlDQpgYGANCg0KYGBge3B5dGhvbn0NCmltcG9ydCBjb3B5ICMgdGhpcyBpcyBob3cgbGlicmFyaWVzIGFyZSBpbXBvcnRlZCBpbiBweXRob24NCmJpZ2xpc3Rfc2VwID0gY29weS5kZWVwY29weShiaWdsaXN0KQ0KYmlnbGlzdF9zZXBbMF1bMF09IkRpam9uIiAjIHJlcGxxY2UgMSB3aXRyaCBESUpPTg0KcHJpbnQoIlRoaXMgaXMgYmlnbGlzdCAiLCBiaWdsaXN0LCAid2hpbGUgdGhpcyBpcyB0aGUgbmV3ICIsIGJpZ2xpc3Rfc2VwKSAjIElUIFdPUktTIQ0KDQojIGFub3RoZXIgbWV0aG9kDQpiaWdsaXN0X3NlcDIgPSBiaWdsaXN0LmNvcHkNCmJpZ2xpc3QgaXMgYmlnbGlzdF9zZXAyICMgZmFsc2UNCmBgYA0KDQoNCg0KIyAyIE51bXB5IDxhIG5hbWU9Im5wIj48L2E+DQoNCk51bVB5IGlzIGFuIG9wZW4tc291cmNlIFB5dGhvbiBsaWJyYXJ5IHRoYXQgZmFjaWxpdGF0ZXMgZWZmaWNpZW50IG51bWVyaWNhbCBvcGVyYXRpb25zIG9uIGxhcmdlIHF1YW50aXRpZXMgb2YgZGF0YS4gVGhlIG1haW4gZGF0YSBzdHJ1Y3R1cmUgaW4gdGhpcyBsaWJyYXJ5IGlzIHRoZSBwb3dlcmZ1bCBOdW1QeSBhcnJheSwgbmRhcnJheSwgd2hpY2ggY2FuIGhhdmUgYW55IG51bWJlciBvZiBkaW1lbnNpb25zLiBUaGUgTnVtUHkgbGlicmFyeSBjb250YWlucyBtYW55IHVzZWZ1bCBmZWF0dXJlcyBmb3IgcGVyZm9ybWluZyBtYXRoZW1hdGljYWwgYW5kIGxvZ2ljYWwgb3BlcmF0aW9ucyBvbiB0aGVzZSBzcGVjaWFsIGFycmF5cy4gTnVtUHkgaXMgYSBwYXJ0IG9mIGEgc2V0IG9mIFB5dGhvbiBsaWJyYXJpZXMgdGhhdCBhcmUgdXNlZCBmb3Igc2NpZW50aWZpYyBjb21wdXRpbmcgZHVlIHRvIGl0cyBlZmZpY2llbnQgZGF0YSBhbmFseXNpcyBjYXBhYmlsaXRpZXMuDQoNClRoZSBhZHZhbnRhZ2Ugb2YgdXNpbmcgTnAgaXMgdGhhdCBpdCB3aWxsIGFsbG93IHVzIHRvIHBlcmZvcm0gb2JqZWN0LXdpc2UgY2FsY3VsYXRpb25zLCB0aGF0IGlzIHdlIGNhbiBkaXJlY3RseSBtYW5pcHVsYXRlIG9iamVjdHMgaW4gYSBsaXN0IHdpdGhvdXQgYWNjZXNzaW5nIHRoZW0gaW5kaXZpZHVhbGx5Lg0KDQpBbm90ZXIgbWFpbiBhZHZhbnRhZ2Ugb2YgbnVtcHkgaXMgc3BlZWQsIGFzIHdlbGwgYXMgaXRzIGNvbXBhdGliaWxpdHkgd2l0aCBvdGhlciBsaWJyYXJpZXMgYW5kIGZ1bmN0aW9ucy4NCkNoZWNrIGhlciBmb3IgbW9yZSBodHRwczovL3dlYmNvdXJzZXMudWNmLmVkdS9jb3Vyc2VzLzEyNDk1NjAvcGFnZXMvcHl0aG9uLWxpc3RzLXZzLW51bXB5LWFycmF5cy13aGF0LWlzLXRoZS1kaWZmZXJlbmNlDQoNCk5vdGljZTogSWYgeW91IGRvbid0IGhhdmUgaXQgeWV0LCBpbnN0YWxsIGl0ICMjIyBwaXAgaW5zdGFsbCBudW1weSAjIyMNCklmIHlvdSBlbmNvdW50ZXIgYW55IGlzc3VlcyBkdXJpbmcgdGhlIGluc3RhbGxhdGlvbiwgdHJ5IHRvIGluc3RhbGwgaXQgZnJvbSBqdXB5dGVyIGNvbnNvbGUNCg0KIyMgMi4xIDEtRCBhcnJheXMgPGEgbmFtZT0iMUQiPjwvYT4NCmBgYHtweXRob259DQppbXBvcnQgbnVtcHkgYXMgbnANCg0KaGVpZ2h0ID0gWzEuODAsIDEuNDAsIDEuNjcsIDEuOTBdICMgdGhpcyBpcyBhIGxpc3QNCmhlaWdodF9hcnJheSA9IG5wLmFycmF5KGhlaWdodCkgIyB0aGlzIGlzIGFuIGFycmF5DQoNCnByaW50KGhlaWdodCwgdHlwZShoZWlnaHQpKQ0KcHJpbnQoaGVpZ2h0X2FycmF5LCB0eXBlKGhlaWdodF9hcnJheSkpDQpgYGANCg0KcGVyZm9ybWluZyBvYmplY3Qtd2lzZSBvcGVyYXRpb25zDQoNCmBgYHtweXRob259DQpwcmludChoZWlnaHRfYXJyYXkgLyAyKQ0KYGBgDQoNCml0IGhhbHZlZCBlYWNoIG9iamVjdCEgDQoNCldoYXQgYWJvdXQgYSBsaXN0Pw0KDQpgYGB7cHl0aG9ufQ0KcHJpbnQoaGVpZ2h0IC8gMikgIyMgZXhwZWN0ZWQgZXJyb3INCmBgYA0KDQp0aGUgZXF1aXZhbGVudCBpczoNCg0KYGBge3B5dGhvbn0NCltxLzIgZm9yIHEgaW4gaGVpZ2h0XQ0KYGBgDQoNClJlbGF0aXZlIHRvIGxpc3RzLCBucCBkb2VzIG5vdCBkZWFsIHdpdGggY29sbGVjdGlvbnMgb2Ygb2JqZWN0cyBvZiBkaWZmZXJlbnQgdHlwZXMuDQoNCmBgYHtweXRob259DQpoZWlnaHQgKyBbImEiXQ0KYGBgDQoNCiMjIyAyLjEuMSBTdWJzZXR0aW5nIDxhIG5hbWU9InN1YnNldHRpbmcxIj48L2E+DQpIb3cgdG8gc3Vic2V0IGFuIGFycmF5DQoNCmBgYHtweXRob259DQpwcmludChoZWlnaHRfYXJyYXlbMV0pDQpgYGANCg0KSG93IHRvIHNlYXJjaCBmb3Igb2JqZWN0cyBpbiBucD8gdGhlcmUgaXMgYSBidWlsdC1pbiBmdW5jdGlvbiBmb3IgdGhhdDoNCg0KYGBge3B5dGhvbn0NCmhlaWdodF9hcnJheSA8IDEuODANCmhlaWdodF9hcnJheVtoZWlnaHRfYXJyYXk8MS44MF0NCnNlYXJjaD1ucC53aGVyZShoZWlnaHRfYXJyYXk8MS44MCkNCnByaW50KHNlYXJjaFswXSkNCmBgYA0KDQojIyAyLjEuMiAyRCBBcnJheXMgPGEgbmFtZT0iMkQiPjwvYT4NCg0KeW91IGNhbiB0aGluayBvZiAyRCBhcnJheXMgYXMgYW4gaW1wcm92ZWQgdmVyc2lvbiBvZiBsaXN0IG9mIGxpc3RzLiAyRCBhcnJheXMgYXJlIGJhc2ljYWxseSBtYXRyaWNlcy4NCg0KTGV0J3MgY3JlYXRlIGEgMkQgYXJyYXkgYnkgY29tYmluaW5nIHdlaWdodCB3aXRoIHRoZSBoZWlnaHQgYXJyYXkNCg0KYGBge3B5dGhvbn0NCndlaWdodF9hcnJheSA9IG5wLmFycmF5KFs4MCwgNDAsIDYwLCA3MF0pDQpib2R5X21lYXN1cmVzID0gbnAuYXJyYXkoW2hlaWdodF9hcnJheSx3ZWlnaHRfYXJyYXldKQ0KcHJpbnQoYm9keV9tZWFzdXJlcykNCnByaW50KCJEaW1lbnNpb25zIG9mIGFycmF5ICIsIGJvZHlfbWVhc3VyZXMuc2hhcGUpDQpgYGANCg0KIyMjIDMuMi4xIFN1YnNldHRpbmcgPGEgbmFtZT0ic3Vic2V0dGluZzIiPjwvYT4NClN1YnNldHRpbmcgYSAyRCBhcnJheQ0Kc3Vic2V0dGluZyB0aGUgZWxlbWVudCBpbiByb3cgMiwgY29sIDMNCg0KYGBge3B5dGhvbn0NCmJvZHlfbWVhc3VyZXNbMSwyXQ0KYGBgDQoNCmFuZCBhbGwgb2JqZWN0cyBpbiByb3cgMQ0KDQpgYGB7cHl0aG9ufQ0KYm9keV9tZWFzdXJlc1sxLDpdDQpgYGANCiMjIyBUbyBnbyBmdXJ0aGVyDQoNCi0gZGF0YSB0eXBlcyA6IGh0dHBzOi8vamFrZXZkcC5naXRodWIuaW8vUHl0aG9uRGF0YVNjaWVuY2VIYW5kYm9vay8wMi4wMS11bmRlcnN0YW5kaW5nLWRhdGEtdHlwZXMuaHRtbCNOdW1QeS1TdGFuZGFyZC1EYXRhLVR5cGVzDQoNCi0gZGlmZmVyZW5jZSBiZXR3ZWVuIFB5dGhvbiBhbmQgTnVtcHkgbGlzdHMgOiBodHRwczovL2pha2V2ZHAuZ2l0aHViLmlvL1B5dGhvbkRhdGFTY2llbmNlSGFuZGJvb2svMDIuMDEtdW5kZXJzdGFuZGluZy1kYXRhLXR5cGVzLmh0bWwjQS1QeXRob24tTGlzdC1Jcy1Nb3JlLVRoYW4tSnVzdC1hLUxpc3QNCg0KLSBhdHRyaWJ1dGVzIDogaHR0cHM6Ly9qYWtldmRwLmdpdGh1Yi5pby9QeXRob25EYXRhU2NpZW5jZUhhbmRib29rLzAyLjAyLXRoZS1iYXNpY3Mtb2YtbnVtcHktYXJyYXlzLmh0bWwjTnVtUHktQXJyYXktQXR0cmlidXRlcw0KDQotIGNvcHlpbmcgaW4gTnVtcHkgOiBodHRwczovL2pha2V2ZHAuZ2l0aHViLmlvL1B5dGhvbkRhdGFTY2llbmNlSGFuZGJvb2svMDIuMDItdGhlLWJhc2ljcy1vZi1udW1weS1hcnJheXMuaHRtbCNTdWJhcnJheXMtYXMtbm8tY29weS12aWV3cw0KDQotDQojIyMgMi4yLjIgQXJpdG1ldGljcyB3aXRoIDItRCBhcnJheXMgPGEgbmFtZT0iYXJpdG0yIj48L2E+DQoNCmBgYHtweXRob259DQptYXRyaXgxPW5wLmFycmF5KFtbMSwyLDMsNF0sWzEsMSwyLDJdXSkNCm1hdHJpeDI9bnAuYXJyYXkoW1s0LDMsMiwxXSxbMiwyLDEsMV1dKQ0KcHJpbnQobWF0cml4MSwgIlxuXG4iLCBtYXRyaXgyKQ0KYGBgDQoNCm9iamVjdCBzdW0NCg0KYGBge3B5dGhvbn0NCm1hdHJpeDEgKyBtYXRyaXgyDQptYXRyaXgxICogbWF0cml4Mg0KbnAudHJhbnNwb3NlKG1hdHJpeDEpIEAgbWF0cml4Mg0KYGBgDQoNCiMgSG9tZXdvcmsNCjEuIFdyaXRlIGEgTnVtUHkgcHJvZ3JhbSB0byBjb252ZXJ0IGEgbGlzdCBvZiBudW1lcmljIHZhbHVlIGludG8gYSBvbmUtZGltZW5zaW9uYWwgTnVtUHkgYXJyYXkuDQoNCkV4cGVjdGVkIE91dHB1dDoNCg0KT3JpZ2luYWwgTGlzdDogWzEyLjIzLCAxMy4zMiwgMTAwLCAzNi4zMl0NCg0KT25lLWRpbWVuc2lvbmFsIE51bVB5IGFycmF5OiBbIDEyLjIzIDEzLjMyIDEwMC4gMzYuMzJdDQoNCjIuIFdyaXRlIGEgTnVtUHkgcHJvZ3JhbSB0byBjcmVhdGUgYSAzeDMgbWF0cml4IHdpdGggdmFsdWVzIHJhbmdpbmcgZnJvbSAyIHRvIDEwLg0KDQpoaW50OiANCiAqIG5wLmFyYW5nZShzdGFydCwgZW5kKQ0KICogcmVzaGFwZSBtZXRob2QNCg0KRXhwZWN0ZWQgT3V0cHV0Og0KW1sgMiAzIDRdDQpbIDUgNiA3XQ0KWyA4IDkgMTBdXQ0KDQozLiBXcml0ZSBhIE51bVB5IHByb2dyYW0gdG8gY3JlYXRlIGEgbnVsbCB2ZWN0b3Igb2Ygc2l6ZSAxMCBhbmQgdXBkYXRlIHNpeHRoIHZhbHVlIHRvIDExLg0KDQpIaW50IG5wLnplcm9zDQoNCjQuIFdyaXRlIGEgTnVtUHkgcHJvZ3JhbSB0byByZXZlcnNlIGFuIGFycmF5IChmaXJzdCBlbGVtZW50IGJlY29tZXMgbGFzdCkuDQoNCk9yaWdpbmFsIGFycmF5OiBhcmFuZ2UoMSwyMCkNCg0KSGludCA6IGxpc3QoKSBhbmQgcmV2ZXJzZWQoKSANCg0KNS4gV3JpdGUgYSBOdW1QeSBwcm9ncmFtIHRvIGNyZWF0ZSBhIHN0cnVjdHVyZWQgYXJyYXkgZnJvbSBnaXZlbiBzdHVkZW50IG5hbWUsIGhlaWdodCwgY2xhc3MgYW5kIHRoZWlyIGRhdGEgdHlwZXMuIE5vdyBzb3J0IHRoZSBhcnJheSBvbiBoZWlnaHQuDQoNCklmIHRoZSBkYXRhIHR5cGUgaXMgc3RydWN0dXJlZCBkYXRhIHR5cGUsIGFuIGFnZ3JlZ2F0ZSBvZiBvdGhlciBkYXRhIHR5cGVzLCAoZS5nLiwgZGVzY3JpYmluZyBhbiBhcnJheSBpdGVtIGNvbnNpc3Rpbmcgb2YgYW4gaW50ZWdlciBhbmQgYSBmbG9hdCksIHdoYXQgYXJlIHRoZSBuYW1lcyBvZiB0aGUg4oCcZmllbGRz4oCdIG9mIHRoZSBzdHJ1Y3R1cmUsIGJ5IHdoaWNoIHRoZXkgY2FuIGJlIGFjY2Vzc2VkLCB3aGF0IGlzIHRoZSBkYXRhLXR5cGUgb2YgZWFjaCBmaWVsZCwgYW5kIHdoaWNoIHBhcnQgb2YgdGhlIG1lbW9yeSBibG9jayBlYWNoIGZpZWxkIHRha2VzLg0KDQpIaW50Og0KICAgKiB0byBjcmVhdGUgYSBzdHJ1Y3R1cmVkIGFycmF5IG5wLmFycmF5KHgsIGR0eXBlPWRhdGFfdHlwZV9saXN0KQ0KICAgDQp1c2UgdGhlIGZvbGxvd2luZzoNCg0KZGF0YV90eXBlID0gWygnbmFtZScsICdTMTUnKSwgKCdjbGFzcycsIGludCksICgnaGVpZ2h0JywgZmxvYXQpXQ0Kc3R1ZGVudHNfZGV0YWlscyA9IFsoJ0phbWVzJywgNSwgNDguNSksICgnTmFpbCcsIDYsIDUyLjUpLCgnUGF1bCcsIDUsIDQyLjEwKSwgKCdQaXQnLCA1LCA0MC4xMSldDQo=</div>
+<div id="rmd-source-code">LS0tDQp0aXRsZTogIlIgTm90ZWJvb2siDQpvdXRwdXQ6IA0KICBodG1sX25vdGVib29rOg0KICAgIHRvYzogdHJ1ZQ0KICAgIHRvY19kZXB0aDogMg0KLS0tDQoNCiMgMSAqKlB5dGhvbiBsaXN0cyoqDQoNCiMjIDEuMSBEZWZpbmUgYSBsaXN0IDxhIG5hbWU9ImRlZmluZWFsaXN0Ij48L2E+DQpQeXRob24gc3RvcmVzIGluZm9ybWF0aW9uIGJ5IHVzaW5nIGxpc3RzLiBUaGVzZSBjYW4gY29udGFpbiBhbnkga2luZCBvZiBvYmplY3QuDQoNCmBgYHtyIEltcG9ydF9saWJyYXJ5LCBlY2hvPUZBTFNFLCBtZXNzYWdlPVRSVUUsIHdhcm5pbmc9RkFMU0V9DQpsaWJyYXJ5KHJldGljdWxhdGUpDQpgYGANCg0KYGBge3B5dGhvbiBlY2hvPVRSVUV9DQp4PTENCnk9IkJTQiINCno9VHJ1ZQ0KDQojIGNyZWF0ZSBsaXN0DQpMMSA9IFt4LHksel0NCnByaW50KEwxKQ0KYGBgDQoNCmV2ZW4gbGlzdCBvZiBsaXN0cyAodHVwbGVzKQ0KDQoNCmBgYHtweXRob259DQphPTINCmI9IkVjb24iDQpjPUZhbHNlDQoNCkwyID0gW2EsYixjXQ0KDQojIEVYRVJDSVNFIGNvbWJpbmUgbGlzdHMNCmJpZ2xpc3QgPSBbTDEsIEwyXQ0KDQpwcmludChiaWdsaXN0KQ0KYGBgDQoNCk5vdyB0aGF0IHlvdSBrbm93IGhvdyB0byBzdG9yZSBpbmZvcm1hdGlvbiBpbnRvIGxpc3QsIGhvdyB0byBhY2Nlc3MgdG8gaXQ/IFNsaWNpbmcNCg0KIyMgMS4yIFNsaWNpbmcgPGEgbmFtZT0ic2xpY2luZyI+PC9hPg0KDQpgYGB7cHl0aG9ufQ0KYmlnbGlzdFsxXQ0KYGBgDQpgYGB7cHl0aG9ufQ0KYmlnbGlzdFsxXVswOjJdDQpgYGANCg0KcmVjYWxsIHRoZSBzeW50YXggW3N0YXJ0IChpbmNsdWRlZCkgOiBlbmQgKGV4Y2x1ZGVkKSBdDQoNCmhvdyB0byBhZGQsIHJlbW92ZSBvciByZXBsYWNlIGNvbnRlbnQgb2YgYSBsaXN0Pw0KDQojIyAxLjMgUmVwbGFjaW5nIDxhIG5hbWU9InJlcGxhY2luZyI+PC9hPg0KDQpgYGB7cHl0aG9ufQ0KIyByZXBsYWNlIGZpcnN0IGVsZW1lbnQgb2Ygc2Vjb25kIGxpc3Qgb2YgYmlnbGlzdA0KYmlnbGlzdFsxXVswXSA9IDMNCnByaW50KGJpZ2xpc3QpDQpgYGANCg0KIyMgMS40IFNoYWxsb3cgYW5kIGRlZXAgY29weWluZyA8YSBuYW1lPSJjb3B5aW5nIj48L2E+DQpWZXJ5IHJlbGV2YW50OiBhc3NpZ25pbmcgYSBsaXN0IHRvIGFub3RoZXIgdmFyaWFibGUgZG9lcyBub3QgY29weSBpdCBidXQgaXQgb25seSBjcmVhdGVzIGEgbGluaw0KDQpgYGB7cHl0aG9ufQ0KYmlnbGlzdF9uZXcgPSBiaWdsaXN0DQpwcmludChiaWdsaXN0LCBiaWdsaXN0X25ldykNCg0KIyByZXBsYWNlDQpiaWdsaXN0WzBdWzBdID0gNA0KDQpwcmludChiaWdsaXN0LCBiaWdsaXN0X25ldykNCg0KYmlnbGlzdCBpcyBiaWdsaXN0X25ldyAjIHRydWUNCmBgYA0KDQpgYGB7cHl0aG9ufQ0KaW1wb3J0IGNvcHkgIyB0aGlzIGlzIGhvdyBsaWJyYXJpZXMgYXJlIGltcG9ydGVkIGluIHB5dGhvbg0KYmlnbGlzdF9zZXAgPSBjb3B5LmRlZXBjb3B5KGJpZ2xpc3QpDQpiaWdsaXN0X3NlcFswXVswXT0iRGlqb24iICMgcmVwbHFjZSAxIHdpdHJoIERJSk9ODQpwcmludCgiVGhpcyBpcyBiaWdsaXN0ICIsIGJpZ2xpc3QsICJ3aGlsZSB0aGlzIGlzIHRoZSBuZXcgIiwgYmlnbGlzdF9zZXApICMgSVQgV09SS1MhDQoNCiMgYW5vdGhlciBtZXRob2QNCmJpZ2xpc3Rfc2VwMiA9IGJpZ2xpc3QuY29weQ0KYmlnbGlzdCBpcyBiaWdsaXN0X3NlcDIgIyBmYWxzZQ0KYGBgDQoNCg0KDQojIDIgTnVtcHkgPGEgbmFtZT0ibnAiPjwvYT4NCg0KTnVtUHkgaXMgYW4gb3Blbi1zb3VyY2UgUHl0aG9uIGxpYnJhcnkgdGhhdCBmYWNpbGl0YXRlcyBlZmZpY2llbnQgbnVtZXJpY2FsIG9wZXJhdGlvbnMgb24gbGFyZ2UgcXVhbnRpdGllcyBvZiBkYXRhLiBUaGUgbWFpbiBkYXRhIHN0cnVjdHVyZSBpbiB0aGlzIGxpYnJhcnkgaXMgdGhlIHBvd2VyZnVsIE51bVB5IGFycmF5LCBuZGFycmF5LCB3aGljaCBjYW4gaGF2ZSBhbnkgbnVtYmVyIG9mIGRpbWVuc2lvbnMuIFRoZSBOdW1QeSBsaWJyYXJ5IGNvbnRhaW5zIG1hbnkgdXNlZnVsIGZlYXR1cmVzIGZvciBwZXJmb3JtaW5nIG1hdGhlbWF0aWNhbCBhbmQgbG9naWNhbCBvcGVyYXRpb25zIG9uIHRoZXNlIHNwZWNpYWwgYXJyYXlzLiBOdW1QeSBpcyBhIHBhcnQgb2YgYSBzZXQgb2YgUHl0aG9uIGxpYnJhcmllcyB0aGF0IGFyZSB1c2VkIGZvciBzY2llbnRpZmljIGNvbXB1dGluZyBkdWUgdG8gaXRzIGVmZmljaWVudCBkYXRhIGFuYWx5c2lzIGNhcGFiaWxpdGllcy4NCg0KVGhlIGFkdmFudGFnZSBvZiB1c2luZyBOcCBpcyB0aGF0IGl0IHdpbGwgYWxsb3cgdXMgdG8gcGVyZm9ybSBvYmplY3Qtd2lzZSBjYWxjdWxhdGlvbnMsIHRoYXQgaXMgd2UgY2FuIGRpcmVjdGx5IG1hbmlwdWxhdGUgb2JqZWN0cyBpbiBhIGxpc3Qgd2l0aG91dCBhY2Nlc3NpbmcgdGhlbSBpbmRpdmlkdWFsbHkuDQoNCkFub3RlciBtYWluIGFkdmFudGFnZSBvZiBudW1weSBpcyBzcGVlZCwgYXMgd2VsbCBhcyBpdHMgY29tcGF0aWJpbGl0eSB3aXRoIG90aGVyIGxpYnJhcmllcyBhbmQgZnVuY3Rpb25zLg0KQ2hlY2sgaGVyIGZvciBtb3JlIGh0dHBzOi8vd2ViY291cnNlcy51Y2YuZWR1L2NvdXJzZXMvMTI0OTU2MC9wYWdlcy9weXRob24tbGlzdHMtdnMtbnVtcHktYXJyYXlzLXdoYXQtaXMtdGhlLWRpZmZlcmVuY2UNCg0KTm90aWNlOiBJZiB5b3UgZG9uJ3QgaGF2ZSBpdCB5ZXQsIGluc3RhbGwgaXQgIyMjIHBpcCBpbnN0YWxsIG51bXB5ICMjIw0KDQojIyAyLjEgMS1EIGFycmF5cyA8YSBuYW1lPSIxRCI+PC9hPg0KYGBge3B5dGhvbn0NCmltcG9ydCBudW1weSBhcyBucA0KDQpoZWlnaHQgPSBbMS44MCwgMS40MCwgMS42NywgMS45MF0gIyB0aGlzIGlzIGEgbGlzdA0KaGVpZ2h0X2FycmF5ID0gbnAuYXJyYXkoaGVpZ2h0KSAjIHRoaXMgaXMgYW4gYXJyYXkNCg0KcHJpbnQoaGVpZ2h0LCB0eXBlKGhlaWdodCkpDQpwcmludChoZWlnaHRfYXJyYXksIHR5cGUoaGVpZ2h0X2FycmF5KSkNCmBgYA0KDQpwZXJmb3JtaW5nIG9iamVjdC13aXNlIG9wZXJhdGlvbnMNCg0KYGBge3B5dGhvbn0NCnByaW50KGhlaWdodF9hcnJheSAvIDIpDQpgYGANCg0KaXQgaGFsdmVkIGVhY2ggb2JqZWN0ISANCg0KV2hhdCBhYm91dCBhIGxpc3Q/DQoNCmBgYHtweXRob259DQpwcmludChoZWlnaHQgLyAyKSAjIyBleHBlY3RlZCBlcnJvcg0KYGBgDQoNCnRoZSBlcXVpdmFsZW50IGlzOg0KDQpgYGB7cHl0aG9ufQ0KW3EvMiBmb3IgcSBpbiBoZWlnaHRdDQpgYGANCg0KUmVsYXRpdmUgdG8gbGlzdHMsIG5wIGRvZXMgbm90IGRlYWwgd2l0aCBjb2xsZWN0aW9ucyBvZiBvYmplY3RzIG9mIGRpZmZlcmVudCB0eXBlcy4NCg0KYGBge3B5dGhvbn0NCmhlaWdodCArIFsiYSJdDQpgYGANCg0KIyMjIDIuMS4xIFN1YnNldHRpbmcgPGEgbmFtZT0ic3Vic2V0dGluZzEiPjwvYT4NCkhvdyB0byBzdWJzZXQgYW4gYXJyYXkNCg0KYGBge3B5dGhvbn0NCnByaW50KGhlaWdodF9hcnJheVsxXSkNCmBgYA0KDQpIb3cgdG8gc2VhcmNoIGZvciBvYmplY3RzIGluIG5wPyB0aGVyZSBpcyBhIGJ1aWx0LWluIGZ1bmN0aW9uIGZvciB0aGF0Og0KDQpgYGB7cHl0aG9ufQ0KaGVpZ2h0X2FycmF5IDwgMS44MA0KaGVpZ2h0X2FycmF5W2hlaWdodF9hcnJheTwxLjgwXQ0Kc2VhcmNoPW5wLndoZXJlKGhlaWdodF9hcnJheTwxLjgwKQ0KcHJpbnQoc2VhcmNoKQ0KaGVpZ2h0X2FycmF5W3NlYXJjaF0NCmBgYA0KDQojIyAyLjEuMiAyRCBBcnJheXMgPGEgbmFtZT0iMkQiPjwvYT4NCg0KeW91IGNhbiB0aGluayBvZiAyRCBhcnJheXMgYXMgYW4gaW1wcm92ZWQgdmVyc2lvbiBvZiBsaXN0IG9mIGxpc3RzLiAyRCBhcnJheXMgYXJlIGJhc2ljYWxseSBtYXRyaWNlcy4NCg0KTGV0J3MgY3JlYXRlIGEgMkQgYXJyYXkgYnkgY29tYmluaW5nIHdlaWdodCB3aXRoIHRoZSBoZWlnaHQgYXJyYXkNCg0KYGBge3B5dGhvbn0NCndlaWdodF9hcnJheSA9IG5wLmFycmF5KFs4MCwgNDAsIDYwLCA3MF0pDQpib2R5X21lYXN1cmVzID0gbnAuYXJyYXkoW2hlaWdodF9hcnJheSx3ZWlnaHRfYXJyYXldKQ0KcHJpbnQoYm9keV9tZWFzdXJlcykNCnByaW50KCJEaW1lbnNpb25zIG9mIGFycmF5ICIsIGJvZHlfbWVhc3VyZXMuc2hhcGUpDQpgYGANCg0KIyMjIDMuMi4xIFN1YnNldHRpbmcgPGEgbmFtZT0ic3Vic2V0dGluZzIiPjwvYT4NClN1YnNldHRpbmcgYSAyRCBhcnJheQ0Kc3Vic2V0dGluZyB0aGUgZWxlbWVudCBpbiByb3cgMiwgY29sIDMNCg0KYGBge3B5dGhvbn0NCmJvZHlfbWVhc3VyZXNbMSwyXQ0KYGBgDQoNCmFuZCBhbGwgb2JqZWN0cyBpbiByb3cgMQ0KDQpgYGB7cHl0aG9ufQ0KYm9keV9tZWFzdXJlc1sxLDpdDQpgYGANCiMjIyBUbyBnbyBmdXJ0aGVyDQoNCi0gZGF0YSB0eXBlcyA6IGh0dHBzOi8vamFrZXZkcC5naXRodWIuaW8vUHl0aG9uRGF0YVNjaWVuY2VIYW5kYm9vay8wMi4wMS11bmRlcnN0YW5kaW5nLWRhdGEtdHlwZXMuaHRtbCNOdW1QeS1TdGFuZGFyZC1EYXRhLVR5cGVzDQoNCi0gZGlmZmVyZW5jZSBiZXR3ZWVuIFB5dGhvbiBhbmQgTnVtcHkgbGlzdHMgOiBodHRwczovL2pha2V2ZHAuZ2l0aHViLmlvL1B5dGhvbkRhdGFTY2llbmNlSGFuZGJvb2svMDIuMDEtdW5kZXJzdGFuZGluZy1kYXRhLXR5cGVzLmh0bWwjQS1QeXRob24tTGlzdC1Jcy1Nb3JlLVRoYW4tSnVzdC1hLUxpc3QNCg0KLSBhdHRyaWJ1dGVzIDogaHR0cHM6Ly9qYWtldmRwLmdpdGh1Yi5pby9QeXRob25EYXRhU2NpZW5jZUhhbmRib29rLzAyLjAyLXRoZS1iYXNpY3Mtb2YtbnVtcHktYXJyYXlzLmh0bWwjTnVtUHktQXJyYXktQXR0cmlidXRlcw0KDQotIGNvcHlpbmcgaW4gTnVtcHkgOiBodHRwczovL2pha2V2ZHAuZ2l0aHViLmlvL1B5dGhvbkRhdGFTY2llbmNlSGFuZGJvb2svMDIuMDItdGhlLWJhc2ljcy1vZi1udW1weS1hcnJheXMuaHRtbCNTdWJhcnJheXMtYXMtbm8tY29weS12aWV3cw0KDQotDQojIyMgMi4yLjIgQXJpdG1ldGljcyB3aXRoIDItRCBhcnJheXMgPGEgbmFtZT0iYXJpdG0yIj48L2E+DQoNCmBgYHtweXRob259DQptYXRyaXgxPW5wLmFycmF5KFtbMSwyLDMsNF0sWzEsMSwyLDJdXSkNCm1hdHJpeDI9bnAuYXJyYXkoW1s0LDMsMiwxXSxbMiwyLDEsMV1dKQ0KcHJpbnQobWF0cml4MSwgIlxuXG4iLCBtYXRyaXgyKQ0KYGBgDQoNCm9iamVjdCBzdW0NCg0KYGBge3B5dGhvbn0NCm1hdHJpeDEgKyBtYXRyaXgyDQptYXRyaXgxICogbWF0cml4Mg0KbnAudHJhbnNwb3NlKG1hdHJpeDEpIEAgbWF0cml4Mg0KYGBgDQoNCiMgSG9tZXdvcmsNCjEuIFdyaXRlIGEgTnVtUHkgcHJvZ3JhbSB0byBjb252ZXJ0IGEgbGlzdCBvZiBudW1lcmljIHZhbHVlIGludG8gYSBvbmUtZGltZW5zaW9uYWwgTnVtUHkgYXJyYXkuDQoNCkV4cGVjdGVkIE91dHB1dDoNCg0KT3JpZ2luYWwgTGlzdDogWzEyLjIzLCAxMy4zMiwgMTAwLCAzNi4zMl0NCg0KT25lLWRpbWVuc2lvbmFsIE51bVB5IGFycmF5OiBbIDEyLjIzIDEzLjMyIDEwMC4gMzYuMzJdDQoNCjIuIFdyaXRlIGEgTnVtUHkgcHJvZ3JhbSB0byBjcmVhdGUgYSAzeDMgbWF0cml4IHdpdGggdmFsdWVzIHJhbmdpbmcgZnJvbSAyIHRvIDEwLg0KDQpoaW50OiANCiAqIG5wLmFyYW5nZShzdGFydCwgZW5kKQ0KICogcmVzaGFwZSBtZXRob2QNCg0KRXhwZWN0ZWQgT3V0cHV0Og0KW1sgMiAzIDRdDQpbIDUgNiA3XQ0KWyA4IDkgMTBdXQ0KDQozLiBXcml0ZSBhIE51bVB5IHByb2dyYW0gdG8gY3JlYXRlIGEgbnVsbCB2ZWN0b3Igb2Ygc2l6ZSAxMCBhbmQgdXBkYXRlIHNpeHRoIHZhbHVlIHRvIDExLg0KDQpIaW50IG5wLnplcm9zDQoNCjQuIFdyaXRlIGEgTnVtUHkgcHJvZ3JhbSB0byByZXZlcnNlIGFuIGFycmF5IChmaXJzdCBlbGVtZW50IGJlY29tZXMgbGFzdCkuDQoNCk9yaWdpbmFsIGFycmF5OiBhcmFuZ2UoMSwyMCkNCg0KSGludCA6IGxpc3QoKSBhbmQgcmV2ZXJzZWQoKSANCg0KNS4gV3JpdGUgYSBOdW1QeSBwcm9ncmFtIHRvIGNyZWF0ZSBhIHN0cnVjdHVyZWQgYXJyYXkgZnJvbSBnaXZlbiBzdHVkZW50IG5hbWUsIGhlaWdodCwgY2xhc3MgYW5kIHRoZWlyIGRhdGEgdHlwZXMuIE5vdyBzb3J0IHRoZSBhcnJheSBvbiBoZWlnaHQuDQoNCklmIHRoZSBkYXRhIHR5cGUgaXMgc3RydWN0dXJlZCBkYXRhIHR5cGUsIGFuIGFnZ3JlZ2F0ZSBvZiBvdGhlciBkYXRhIHR5cGVzLCAoZS5nLiwgZGVzY3JpYmluZyBhbiBhcnJheSBpdGVtIGNvbnNpc3Rpbmcgb2YgYW4gaW50ZWdlciBhbmQgYSBmbG9hdCksIHdoYXQgYXJlIHRoZSBuYW1lcyBvZiB0aGUg4oCcZmllbGRz4oCdIG9mIHRoZSBzdHJ1Y3R1cmUsIGJ5IHdoaWNoIHRoZXkgY2FuIGJlIGFjY2Vzc2VkLCB3aGF0IGlzIHRoZSBkYXRhLXR5cGUgb2YgZWFjaCBmaWVsZCwgYW5kIHdoaWNoIHBhcnQgb2YgdGhlIG1lbW9yeSBibG9jayBlYWNoIGZpZWxkIHRha2VzLg0KDQpIaW50Og0KICAgKiB0byBjcmVhdGUgYSBzdHJ1Y3R1cmVkIGFycmF5IG5wLmFycmF5KHgsIGR0eXBlPWRhdGFfdHlwZV9saXN0KQ0KICAgDQp1c2UgdGhlIGZvbGxvd2luZzoNCg0KZGF0YV90eXBlID0gWygnbmFtZScsICdTMTUnKSwgKCdjbGFzcycsIGludCksICgnaGVpZ2h0JywgZmxvYXQpXQ0Kc3R1ZGVudHNfZGV0YWlscyA9IFsoJ0phbWVzJywgNSwgNDguNSksICgnTmFpbCcsIDYsIDUyLjUpLCgnUGF1bCcsIDUsIDQyLjEwKSwgKCdQaXQnLCA1LCA0MC4xMSldDQoNCikNCmBgYHtweXRob259DQpzdHVkZW50X2luZm89KFsnSmFtZXMnLCc1JywnNDguNSddLFsnTmFpbCcsJzYnLCc1Mi41J10sWydQYXVsJywnNScsJzQyLjEnXSxbJ1BpdCcsJzUnLCc0MC4xMSddKQ0Kc3R1ZGVudF9pbmZvX2FycmF5PW5wLmFycmF5KHN0dWRlbnRfaW5mbykNCnN0dWRlbnRfaW5mb19hcnJheVtzdHVkZW50X2luZm9fYXJyYXlbOiwgMl0uYXJnc29ydCgpXQ0KcHJpbnQoW3N0dWRlbnRfaW5mb19hcnJheVs6LCAyXS5hcmdzb3J0KCldKQ0KDQpgYGANCg0KDQoNCg0KDQo=</div>
 
 
 
