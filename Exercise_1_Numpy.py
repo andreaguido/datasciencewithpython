@@ -2,7 +2,7 @@ import os
 import numpy as np
 os.getcwd()
 os.chdir()
-data = np.genfromtxt(fname="2021)_Baseball_Teams.csv",delimiter=";", skip_header = 1)
+data = np.genfromtxt(fname="Datasets/2021_Baseball_Teams.csv",delimiter=";", skip_header = 1)
 
 data.shape
 
@@ -54,4 +54,35 @@ def stats_year_david(yearI, yearE, team):
 
 # 4 create a function to compute moving averages over the time series
 
+def moving_average(arr,window_size):
+  i = 0
+  # Initialize an empty list to store moving averages
+  moving_averages = []
+    
+  # Loop through the array t o
+  #consider every window of size 3
+  while i < len(arr) - window_size + 1:
+    
+      # Calculate the average of current window
+      window_average = round(np.sum(arr[
+        i:i+window_size]) / window_size, 2)
+        
+      # Store the average of current
+      # window in moving average list
+      moving_averages.append(window_average)
+        
+      # Shift window to right by one position
+      i += 1
+    
+  print(moving_averages)
+pass
+
 # 5 t-test between two teams run scores
+
+# 6 Housing dataset
+## the goal is to practice with data importing, sorting and slicing.
+## create a Rmd that reports the following information
+## 1. summary statistics of the house price variable
+## 2. summary statistics of house price by ocean proximity
+## 3. oldest house(s)
+## 4. test whether houses "NEAR_BAY" are more expensive than houses "INLAND"

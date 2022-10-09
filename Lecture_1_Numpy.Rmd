@@ -103,7 +103,7 @@ Check her for more https://webcourses.ucf.edu/courses/1249560/pages/python-lists
 
 Notice: If you don't have it yet, install it ### pip install numpy ###
 
-## 2.1 1-D arrays <a name="1D"></a>
+## 1-D arrays <a name="1D"></a>
 ```{python}
 import numpy as np
 
@@ -157,7 +157,7 @@ print(search)
 height_array[search]
 ```
 
-## 2.1.2 2D Arrays <a name="2D"></a>
+## 2 2D Arrays <a name="2D"></a>
 
 you can think of 2D arrays as an improved version of list of lists. 2D arrays are basically matrices.
 
@@ -208,6 +208,77 @@ object sum
 matrix1 + matrix2
 matrix1 * matrix2
 np.transpose(matrix1) @ matrix2
+```
+
+## Broadcasting <a name="br"></a>
+On top of vectorizing (to avoid slow loops), numpy allows to perform broadcasting operations on arrays. 
+Broadcasting allows to perform binary functions (addition, multiplication etc.) on arrays of different sizes.
+```{python}
+M=np.ones((3,3))
+a = np.arange(0,3)
+a
+M
+M + a
+```
+Here below a practical application of broadcasting. check the book for more examples and details.
+
+```{python}
+# centering
+np.random.seed(1234)
+X = np.random.random([10,3])
+mean = X.mean(0) # mean by column
+x_centered = X - mean
+x_centered.mean(0)
+```
+
+
+
+## Sorting
+there are functions in Numpy that allow you to sort arrays : np.sort and np.argsort
+
+- np.sort sort arrays in descending or ascending order
+- np.argsort gives back the indices to sort an array
+
+sorting is also possible along multidimensional arrays (eg columns or rows).
+
+```{python}
+rand = np.random.RandomState(42) # to seed
+X= rand.randint(0,10,(4,6))
+X
+np.sort(X,axis=0)
+np.sort(X,axis=1)
+
+```
+
+# Partitions
+You may want to sort only a partition of an array. The function used for this purpose is np.partition(ARRAY, N of partition)
+
+```{python}
+X = rand.randint(0,10, [10,6])
+np.partition(X,3) # all smallest values are on the left side of each array
+```
+## Before Pandas...
+
+**Structured Data in Numpy**
+
+```{python}
+name = ['Alice','Bob','Cathy','Doug']
+age = [25,33,22,53]
+
+# using dict
+data = np.zeros(4, dtype = {'names':('name','age'), 'formats':('U10','i4')}) # 4 is the lenght of name and age arrays
+data['name']=name
+data['age']=age
+
+data
+data['name']
+data['name'][data['age']<30]
+
+# try with baseball teams
+dataraw = np.genfromtxt(fname="Datasets/2021_Baseball_Teams.csv",delimiter=";", skip_header = 1)
+data = np.zeros(len(dataraw), dtype={'names':('year','NY','BO','CS'),'formats':('i4','i8','i8','i8')})
+data['year']=dataraw[:,0]
+data['NY']=dataraw[:,1]
 ```
 
 # Homework

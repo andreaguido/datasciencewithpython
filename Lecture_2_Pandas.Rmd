@@ -1,0 +1,129 @@
+---
+title: "Lecture_2_Pandas"
+author: "Andrea Guido"
+date: "09/10/2022"
+output: html_document
+---
+# Lecture 3 - PANDAS library
+
+Pandas is a library with data manipulation tools that are built on top of and add to those of the established NumPy library. It relies on the NumPy array structure for implementation of its objects and therefore shares many features with NumPy and Matplotlib and is frequently used alongside it. Pandas is also a part of the set of libraries used for scientific computation.
+
+## Why Pandas? 
+
+- A fast and efficient DataFrame object for data manipulation with integrated indexing;
+- Tools for reading and writing data between in-memory data structures and different formats: CSV and text files, Microsoft Excel, SQL databases, and the fast HDF5 format;
+- reshaping and pivoting of data sets;
+- High performance merging and joining of data sets;
+- Python with pandas is in use in a wide variety of academic and commercial domains, including Finance, Neuroscience, Economics, Statistics, Advertising, Web Analytics, and more.
+
+## before starting
+- make sure you have Pandas installed
+
+```{r Import_library, echo=FALSE, message=TRUE, warning=FALSE}
+library(reticulate)
+reticulate::repl_python()
+```
+
+```{python}
+import pandas as pd
+import numpy as np
+```
+
+# 1. Series
+
+```{r}
+
+```
+
+# 2. Dataframes
+```{python}
+# create a dataframe from dictionary (see Basic Knowledge file for dictionaries)
+data = pd.DataFrame(
+    {
+        "Name": [
+            "Braund, Mr. Owen Harris",
+            "Allen, Mr. William Henry",
+            "Bonnell, Miss. Elizabeth",
+            np.NaN
+        ],
+        "Age": [22, 35, 58,np.NaN],
+        "Sex": ["male", "male", "female", np.NaN],
+    }
+)
+
+data
+```
+
+```{python}
+# alternative from list of tuples
+names = [
+    ("M. Rossi", 22, "male"),
+    ("Mme Bianchi", 21, "female")
+]
+
+pd.DataFrame(names, columns=("Name", "Age", "Gender"))
+
+```
+
+```{python}
+# from numpy arrays
+names = ["M. Rossi","Mme Bianchi"]
+age = [22,21]
+sex = ["male","female"]
+pd.DataFrame(np.array([names,age,sex]).T, columns=("Names","Age","Gender"))
+```
+
+# Data cleaning
+## 2.1 Inspecting a DataFrame
+
+```{python}
+# get info about data variables
+data.info()
+data.head()
+data.shape
+data.describe()
+data.columns
+```
+
+### 2.1.1 Checking NaNs
+```{python}
+# NaNs in the whole database
+# The any() function returns True if any item in an iterable are true, otherwise it returns False. 
+data.isnull().values.any()
+
+# Check NaNs among columns
+# sum among all columns
+data.isnull().sum()
+
+# count number of nas in each row
+for i in range(len(data.index)) :
+    print(" Total NaN in row", i + 1, ":",
+          data.iloc[i].isnull().sum())
+```
+
+## 2.2 Selecting rows and columns
+
+### 2.2.1 **Based on names or number**
+
+```{python}
+# subsetting columns by their name
+data["Name"]
+
+data.iloc[:,[0,2]]
+# select row 
+data.iloc[0,:]
+
+type(data.iloc[0,:])
+type(data.iloc[:,0])
+```
+
+### 2.2.2 Based on condition (filtering)
+
+```{python}
+# specific rows
+data[data["Age"] <30]
+# specific rows + cols
+## notice : loc diff from iloc
+data.loc[data["Age"]<30, ["Name","Age"]]
+```
+
