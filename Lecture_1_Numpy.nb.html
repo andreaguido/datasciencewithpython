@@ -521,8 +521,8 @@ a</code></pre>
 <pre class="python"><code>x_centered.mean(0)
 </code></pre>
 <!-- rnb-source-end -->
-<!-- rnb-output-begin eyJkYXRhIjoiYXJyYXkoWzQuNDQwODkyMTBlLTE3LCAxLjExMDIyMzAyZS0xNywgMC4wMDAwMDAwMGUrMDBdKVxuIn0= -->
-<pre><code>array([4.44089210e-17, 1.11022302e-17, 0.00000000e+00])</code></pre>
+<!-- rnb-output-begin eyJkYXRhIjoiYXJyYXkoWy03Ljc3MTU2MTE3ZS0xNywgLTMuMzMwNjY5MDdlLTE3LCAgNi42NjEzMzgxNWUtMTddKVxuIn0= -->
+<pre><code>array([-7.77156117e-17, -3.33066907e-17,  6.66133815e-17])</code></pre>
 <!-- rnb-output-end -->
 <!-- rnb-chunk-end -->
 <!-- rnb-text-begin -->
@@ -537,34 +537,15 @@ a</code></pre>
 <p>sorting is also possible along multidimensional arrays (eg columns or rows).</p>
 <!-- rnb-text-end -->
 <!-- rnb-chunk-begin -->
-<!-- rnb-source-begin eyJkYXRhIjoiYGBgcHl0aG9uXG5yYW5kID0gbnAucmFuZG9tLlJhbmRvbVN0YXRlKDQyKSAjIHRvIHNlZWRcblg9IHJhbmQucmFuZGludCgwLDEwLCg0LDYpKVxuWFxuYGBgIn0= -->
-<pre class="python"><code>rand = np.random.RandomState(42) # to seed
-X= rand.randint(0,10,(4,6))
-X</code></pre>
+<!-- rnb-source-begin eyJkYXRhIjoiYGBgcHl0aG9uXG5YXG5cbmBgYCJ9 -->
+<pre class="python"><code>X
+</code></pre>
 <!-- rnb-source-end -->
 <!-- rnb-output-begin eyJkYXRhIjoiYXJyYXkoW1s2LCAzLCA3LCA0LCA2LCA5XSxcbiAgICAgICBbMiwgNiwgNywgNCwgMywgN10sXG4gICAgICAgWzcsIDIsIDUsIDQsIDEsIDddLFxuICAgICAgIFs1LCAxLCA0LCAwLCA5LCA1XV0pXG4ifQ== -->
 <pre><code>array([[6, 3, 7, 4, 6, 9],
        [2, 6, 7, 4, 3, 7],
        [7, 2, 5, 4, 1, 7],
        [5, 1, 4, 0, 9, 5]])</code></pre>
-<!-- rnb-output-end -->
-<!-- rnb-source-begin eyJkYXRhIjoiYGBgcHl0aG9uXG5ucC5zb3J0KFgsYXhpcz0wKVxuYGBgIn0= -->
-<pre class="python"><code>np.sort(X,axis=0)</code></pre>
-<!-- rnb-source-end -->
-<!-- rnb-output-begin eyJkYXRhIjoiYXJyYXkoW1syLCAxLCA0LCAwLCAxLCA1XSxcbiAgICAgICBbNSwgMiwgNSwgNCwgMywgN10sXG4gICAgICAgWzYsIDMsIDcsIDQsIDYsIDddLFxuICAgICAgIFs3LCA2LCA3LCA0LCA5LCA5XV0pXG4ifQ== -->
-<pre><code>array([[2, 1, 4, 0, 1, 5],
-       [5, 2, 5, 4, 3, 7],
-       [6, 3, 7, 4, 6, 7],
-       [7, 6, 7, 4, 9, 9]])</code></pre>
-<!-- rnb-output-end -->
-<!-- rnb-source-begin eyJkYXRhIjoiYGBgcHl0aG9uXG5ucC5zb3J0KFgsYXhpcz0xKVxuYGBgIn0= -->
-<pre class="python"><code>np.sort(X,axis=1)</code></pre>
-<!-- rnb-source-end -->
-<!-- rnb-output-begin eyJkYXRhIjoiYXJyYXkoW1szLCA0LCA2LCA2LCA3LCA5XSxcbiAgICAgICBbMiwgMywgNCwgNiwgNywgN10sXG4gICAgICAgWzEsIDIsIDQsIDUsIDcsIDddLFxuICAgICAgIFswLCAxLCA0LCA1LCA1LCA5XV0pXG4ifQ== -->
-<pre><code>array([[3, 4, 6, 6, 7, 9],
-       [2, 3, 4, 6, 7, 7],
-       [1, 2, 4, 5, 7, 7],
-       [0, 1, 4, 5, 5, 9]])</code></pre>
 <!-- rnb-output-end -->
 <!-- rnb-chunk-end -->
 <!-- rnb-text-begin -->
@@ -575,10 +556,22 @@ X</code></pre>
 <p>You may want to sort only a partition of an array. The function used for this purpose is np.partition(ARRAY, N of partition)</p>
 <!-- rnb-text-end -->
 <!-- rnb-chunk-begin -->
-<!-- rnb-source-begin eyJkYXRhIjoiYGBgcHl0aG9uXG5YID0gcmFuZC5yYW5kaW50KDAsMTAsIFsxMCw2XSlcbm5wLnBhcnRpdGlvbihYLDMpICMgYWxsIHNtYWxsZXN0IHZhbHVlcyBhcmUgb24gdGhlIGxlZnQgc2lkZSBvZiBlYWNoIGFycmF5XG5gYGAifQ== -->
-<pre class="python"><code>X = rand.randint(0,10, [10,6])
-np.partition(X,3) # all smallest values are on the left side of each array</code></pre>
+<!-- rnb-source-begin eyJkYXRhIjoiYGBgcHl0aG9uXG5ucC5wYXJ0aXRpb24oWCwzKSAjIGFsbCBzbWFsbGVzdCB2YWx1ZXMgYXJlIG9uIHRoZSBsZWZ0IHNpZGUgb2YgZWFjaCBhcnJheVxuXG5gYGAifQ== -->
+<pre class="python"><code>np.partition(X,3) # all smallest values are on the left side of each array
+</code></pre>
 <!-- rnb-source-end -->
+<!-- rnb-output-begin eyJkYXRhIjoiYXJyYXkoW1swLCAyLCAzLCA2LCA4LCA5XSxcbiAgICAgICBbMiwgNCwgMiwgNCwgNiwgOF0sXG4gICAgICAgWzEsIDEsIDMsIDYsIDgsIDhdLFxuICAgICAgIFsxLCAzLCA0LCA4LCA5LCA5XSxcbiAgICAgICBbMCwgMSwgMiwgMywgNiwgN10sXG4gICAgICAgWzMsIDEsIDUsIDUsIDcsIDldLFxuICAgICAgIFsxLCAxLCAzLCA1LCA5LCA5XSxcbiAgICAgICBbMywgNCwgNiwgNywgNywgOF0sXG4gICAgICAgWzQsIDEsIDcsIDgsIDgsIDldLFxuICAgICAgIFswLCAwLCA2LCA3LCA4LCA4XV0pXG4ifQ== -->
+<pre><code>array([[0, 2, 3, 6, 8, 9],
+       [2, 4, 2, 4, 6, 8],
+       [1, 1, 3, 6, 8, 8],
+       [1, 3, 4, 8, 9, 9],
+       [0, 1, 2, 3, 6, 7],
+       [3, 1, 5, 5, 7, 9],
+       [1, 1, 3, 5, 9, 9],
+       [3, 4, 6, 7, 7, 8],
+       [4, 1, 7, 8, 8, 9],
+       [0, 0, 6, 7, 8, 8]])</code></pre>
+<!-- rnb-output-end -->
 <!-- rnb-chunk-end -->
 <!-- rnb-text-begin -->
 <div id="before-pandas" class="section level2">
@@ -590,122 +583,9 @@ np.partition(X,3) # all smallest values are on the left side of each array</code
 <pre class="python"><code>data
 </code></pre>
 <!-- rnb-source-end -->
-<!-- rnb-output-begin eyJkYXRhIjoiYXJyYXkoWygxOTA4LCAtOTIyMzM3MjAzNjg1NDc3NTgwOCwgIDU2NCwgMCksXG4gICAgICAgKDE5MDksIC05MjIzMzcyMDM2ODU0Nzc1ODA4LCAgNjAxLCAwKSxcbiAgICAgICAoMTkxMCwgLTkyMjMzNzIwMzY4NTQ3NzU4MDgsICA2NDEsIDApLFxuICAgICAgICgxOTExLCAtOTIyMzM3MjAzNjg1NDc3NTgwOCwgIDY4MCwgMCksXG4gICAgICAgKDE5MTIsIC05MjIzMzcyMDM2ODU0Nzc1ODA4LCAgNzk5LCAwKSxcbiAgICAgICAoMTkxMywgICAgICAgICAgICAgICAgICA1MjksICA2MzEsIDApLFxuICAgICAgICgxOTE0LCAgICAgICAgICAgICAgICAgIDUzNywgIDU4OSwgMCksXG4gICAgICAgKDE5MTUsICAgICAgICAgICAgICAgICAgNTg0LCAgNjY5LCAwKSxcbiAgICAgICAoMTkxNiwgICAgICAgICAgICAgICAgICA1NzcsICA1NTAsIDApLFxuICAgICAgICgxOTE3LCAgICAgICAgICAgICAgICAgIDUyNCwgIDU1NSwgMCksXG4gICAgICAgKDE5MTgsICAgICAgICAgICAgICAgICAgNDkzLCAgNDc0LCAwKSxcbiAgICAgICAoMTkxOSwgICAgICAgICAgICAgICAgICA1NzgsICA1NjQsIDApLFxuICAgICAgICgxOTIwLCAgICAgICAgICAgICAgICAgIDgzOCwgIDY1MCwgMCksXG4gICAgICAgKDE5MjEsICAgICAgICAgICAgICAgICAgOTQ4LCAgNjY4LCAwKSxcbiAgICAgICAoMTkyMiwgICAgICAgICAgICAgICAgICA3NTgsICA1OTgsIDApLFxuICAgICAgICgxOTIzLCAgICAgICAgICAgICAgICAgIDgyMywgIDU4NCwgMCksXG4gICAgICAgKDE5MjQsICAgICAgICAgICAgICAgICAgNzk4LCAgNzM3LCAwKSxcbiAgICAgICAoMTkyNSwgICAgICAgICAgICAgICAgICA3MDYsICA2MzksIDApLFxuICAgICAgICgxOTI2LCAgICAgICAgICAgICAgICAgIDg0NywgIDU2MiwgMCksXG4gICAgICAgKDE5MjcsICAgICAgICAgICAgICAgICAgOTc1LCAgNTk3LCAwKSxcbiAgICAgICAoMTkyOCwgICAgICAgICAgICAgICAgICA4OTQsICA1ODksIDApLFxuICAgICAgICgxOTI5LCAgICAgICAgICAgICAgICAgIDg5OSwgIDYwNSwgMCksXG4gICAgICAgKDE5MzAsICAgICAgICAgICAgICAgICAxMDYyLCAgNjEyLCAwKSxcbiAgICAgICAoMTkzMSwgICAgICAgICAgICAgICAgIDEwNjcsICA2MjUsIDApLFxuICAgICAgICgxOTMyLCAgICAgICAgICAgICAgICAgMTAwMiwgIDU2NiwgMCksXG4gICAgICAgKDE5MzMsICAgICAgICAgICAgICAgICAgOTI3LCAgNzAwLCAwKSxcbiAgICAgICAoMTkzNCwgICAgICAgICAgICAgICAgICA4NDIsICA4MjAsIDApLFxuICAgICAgICgxOTM1LCAgICAgICAgICAgICAgICAgIDgxOCwgIDcxOCwgMCksXG4gICAgICAgKDE5MzYsICAgICAgICAgICAgICAgICAxMDY1LCAgNzc1LCAwKSxcbiAgICAgICAoMTkzNywgICAgICAgICAgICAgICAgICA5NzksICA4MjEsIDApLFxuICAgICAgICgxOTM4LCAgICAgICAgICAgICAgICAgIDk2NiwgIDkwMiwgMCksXG4gICAgICAgKDE5MzksICAgICAgICAgICAgICAgICAgOTY3LCAgODkwLCAwKSxcbiAgICAgICAoMTk0MCwgICAgICAgICAgICAgICAgICA4MTcsICA4NzIsIDApLFxuICAgICAgICgxOTQxLCAgICAgICAgICAgICAgICAgIDgzMCwgIDg2NSwgMCksXG4gICAgICAgKDE5NDIsICAgICAgICAgICAgICAgICAgODAxLCAgNzYxLCAwKSxcbiAgICAgICAoMTk0MywgICAgICAgICAgICAgICAgICA2NjksICA1NjMsIDApLFxuICAgICAgICgxOTQ0LCAgICAgICAgICAgICAgICAgIDY3NCwgIDczOSwgMCksXG4gICAgICAgKDE5NDUsICAgICAgICAgICAgICAgICAgNjc2LCAgNTk5LCAwKSxcbiAgICAgICAoMTk0NiwgICAgICAgICAgICAgICAgICA2ODQsICA3OTIsIDApLFxuICAgICAgICgxOTQ3LCAgICAgICAgICAgICAgICAgIDc5NCwgIDcyMCwgMCksXG4gICAgICAgKDE5NDgsICAgICAgICAgICAgICAgICAgODU3LCAgOTA3LCAwKSxcbiAgICAgICAoMTk0OSwgICAgICAgICAgICAgICAgICA4MjksICA4OTYsIDApLFxuICAgICAgICgxOTUwLCAgICAgICAgICAgICAgICAgIDkxNCwgMTAyNywgMCksXG4gICAgICAgKDE5NTEsICAgICAgICAgICAgICAgICAgNzk4LCAgODA0LCAwKSxcbiAgICAgICAoMTk1MiwgICAgICAgICAgICAgICAgICA3MjcsICA2NjgsIDApLFxuICAgICAgICgxOTUzLCAgICAgICAgICAgICAgICAgIDgwMSwgIDY1NiwgMCksXG4gICAgICAgKDE5NTQsICAgICAgICAgICAgICAgICAgODA1LCAgNzAwLCAwKSxcbiAgICAgICAoMTk1NSwgICAgICAgICAgICAgICAgICA3NjIsICA3NTUsIDApLFxuICAgICAgICgxOTU2LCAgICAgICAgICAgICAgICAgIDg1NywgIDc4MCwgMCksXG4gICAgICAgKDE5NTcsICAgICAgICAgICAgICAgICAgNzIzLCAgNzIxLCAwKSxcbiAgICAgICAoMTk1OCwgICAgICAgICAgICAgICAgICA3NTksICA2OTcsIDApLFxuICAgICAgICgxOTU5LCAgICAgICAgICAgICAgICAgIDY4NywgIDcyNiwgMCksXG4gICAgICAgKDE5NjAsICAgICAgICAgICAgICAgICAgNzQ2LCAgNjU4LCAwKSxcbiAgICAgICAoMTk2MSwgICAgICAgICAgICAgICAgICA4MjcsICA3MjksIDApLFxuICAgICAgICgxOTYyLCAgICAgICAgICAgICAgICAgIDgxNywgIDcwNywgMCksXG4gICAgICAgKDE5NjMsICAgICAgICAgICAgICAgICAgNzE0LCAgNjY2LCAwKSxcbiAgICAgICAoMTk2NCwgICAgICAgICAgICAgICAgICA3MzAsICA2ODgsIDApLFxuICAgICAgICgxOTY1LCAgICAgICAgICAgICAgICAgIDYxMSwgIDY2OSwgMCksXG4gICAgICAgKDE5NjYsICAgICAgICAgICAgICAgICAgNjExLCAgNjU1LCAwKSxcbiAgICAgICAoMTk2NywgICAgICAgICAgICAgICAgICA1MjIsICA3MjIsIDApLFxuICAgICAgICgxOTY4LCAgICAgICAgICAgICAgICAgIDUzNiwgIDYxNCwgMCksXG4gICAgICAgKDE5NjksICAgICAgICAgICAgICAgICAgNTYyLCAgNzQzLCAwKSxcbiAgICAgICAoMTk3MCwgICAgICAgICAgICAgICAgICA2ODAsICA3ODYsIDApLFxuICAgICAgICgxOTcxLCAgICAgICAgICAgICAgICAgIDY0OCwgIDY5MSwgMCksXG4gICAgICAgKDE5NzIsICAgICAgICAgICAgICAgICAgNTU3LCAgNjQwLCAwKSxcbiAgICAgICAoMTk3MywgICAgICAgICAgICAgICAgICA2NDEsICA3MzgsIDApLFxuICAgICAgICgxOTc0LCAgICAgICAgICAgICAgICAgIDY3MSwgIDY5NiwgMCksXG4gICAgICAgKDE5NzUsICAgICAgICAgICAgICAgICAgNjgxLCAgNzk2LCAwKSxcbiAgICAgICAoMTk3NiwgICAgICAgICAgICAgICAgICA3MzAsICA3MTYsIDApLFxuICAgICAgICgxOTc3LCAgICAgICAgICAgICAgICAgIDgzMSwgIDg1OSwgMCksXG4gICAgICAgKDE5NzgsICAgICAgICAgICAgICAgICAgNzM1LCAgNzk2LCAwKSxcbiAgICAgICAoMTk3OSwgICAgICAgICAgICAgICAgICA3MzQsICA4NDEsIDApLFxuICAgICAgICgxOTgwLCAgICAgICAgICAgICAgICAgIDgyMCwgIDc1NywgMCksXG4gICAgICAgKDE5ODEsICAgICAgICAgICAgICAgICAgNDIxLCAgNTE5LCAwKSxcbiAgICAgICAoMTk4MiwgICAgICAgICAgICAgICAgICA3MDksICA3NTMsIDApLFxuICAgICAgICgxOTgzLCAgICAgICAgICAgICAgICAgIDc3MCwgIDcyNCwgMCksXG4gICAgICAgKDE5ODQsICAgICAgICAgICAgICAgICAgNzU4LCAgODEwLCAwKSxcbiAgICAgICAoMTk4NSwgICAgICAgICAgICAgICAgICA4MzksICA4MDAsIDApLFxuICAgICAgICgxOTg2LCAgICAgICAgICAgICAgICAgIDc5NywgIDc5NCwgMCksXG4gICAgICAgKDE5ODcsICAgICAgICAgICAgICAgICAgNzg4LCAgODQyLCAwKSxcbiAgICAgICAoMTk4OCwgICAgICAgICAgICAgICAgICA3NzIsICA4MTMsIDApLFxuICAgICAgICgxOTg5LCAgICAgICAgICAgICAgICAgIDY5OCwgIDc3NCwgMCksXG4gICAgICAgKDE5OTAsICAgICAgICAgICAgICAgICAgNjAzLCAgNjk5LCAwKSxcbiAgICAgICAoMTk5MSwgICAgICAgICAgICAgICAgICA2NzQsICA3MzEsIDApLFxuICAgICAgICgxOTkyLCAgICAgICAgICAgICAgICAgIDczMywgIDU5OSwgMCksXG4gICAgICAgKDE5OTMsICAgICAgICAgICAgICAgICAgODIxLCAgNjg2LCAwKSxcbiAgICAgICAoMTk5NCwgICAgICAgICAgICAgICAgICA2NzAsICA1NTIsIDApLFxuICAgICAgICgxOTk1LCAgICAgICAgICAgICAgICAgIDc0OSwgIDc5MSwgMCksXG4gICAgICAgKDE5OTYsICAgICAgICAgICAgICAgICAgODcxLCAgOTI4LCAwKSxcbiAgICAgICAoMTk5NywgICAgICAgICAgICAgICAgICA4OTEsICA4NTEsIDApLFxuICAgICAgICgxOTk4LCAgICAgICAgICAgICAgICAgIDk2NSwgIDg3NiwgMCksXG4gICAgICAgKDE5OTksICAgICAgICAgICAgICAgICAgOTAwLCAgODM2LCAwKSxcbiAgICAgICAoMjAwMCwgICAgICAgICAgICAgICAgICA4NzEsICA3OTIsIDApLFxuICAgICAgICgyMDAxLCAgICAgICAgICAgICAgICAgIDgwNCwgIDc3MiwgMCksXG4gICAgICAgKDIwMDIsICAgICAgICAgICAgICAgICAgODk3LCAgODU5LCAwKSxcbiAgICAgICAoMjAwMywgICAgICAgICAgICAgICAgICA4NzcsICA5NjEsIDApLFxuICAgICAgICgyMDA0LCAgICAgICAgICAgICAgICAgIDg5NywgIDk0OSwgMCksXG4gICAgICAgKDIwMDUsICAgICAgICAgICAgICAgICAgODg2LCAgOTEwLCAwKSxcbiAgICAgICAoMjAwNiwgICAgICAgICAgICAgICAgICA5MzAsICA4MjAsIDApLFxuICAgICAgICgyMDA3LCAgICAgICAgICAgICAgICAgIDk2OCwgIDg2NywgMCksXG4gICAgICAgKDIwMDgsICAgICAgICAgICAgICAgICAgNzg5LCAgODQ1LCAwKSxcbiAgICAgICAoMjAwOSwgICAgICAgICAgICAgICAgICA5MTUsICA4NzIsIDApLFxuICAgICAgICgyMDEwLCAgICAgICAgICAgICAgICAgIDg1OSwgIDgxOCwgMCksXG4gICAgICAgKDIwMTEsICAgICAgICAgICAgICAgICAgODY3LCAgODc1LCAwKSxcbiAgICAgICAoMjAxMiwgICAgICAgICAgICAgICAgICA4MDQsICA3MzQsIDApLFxuICAgICAgICgyMDEzLCAgICAgICAgICAgICAgICAgIDY1MCwgIDg1MywgMCksXG4gICAgICAgKDIwMTQsICAgICAgICAgICAgICAgICAgNjMzLCAgNjM0LCAwKSxcbiAgICAgICAoMjAxNSwgICAgICAgICAgICAgICAgICA3NjQsICA3NDgsIDApLFxuICAgICAgICgyMDE2LCAgICAgICAgICAgICAgICAgIDY4MCwgIDg3OCwgMCksXG4gICAgICAgKDIwMTcsICAgICAgICAgICAgICAgICAgODU4LCAgNzg1LCAwKSxcbiAgICAgICAoMjAxOCwgICAgICAgICAgICAgICAgICA4NTEsICA4NzYsIDApLFxuICAgICAgICgyMDE5LCAgICAgICAgICAgICAgICAgIDk0MywgIDkwMSwgMCksXG4gICAgICAgKDIwMjAsICAgICAgICAgICAgICAgICAgMzE1LCAgMjkyLCAwKSxcbiAgICAgICAoMjAyMSwgICAgICAgICAgICAgICAgICA3MTEsICA4MjksIDApXSxcbiAgICAgIGR0eXBlPVsoJ3llYXInLCAnPGk0JyksICgnTlknLCAnPGk4JyksICgnQk8nLCAnPGk4JyksICgnQ1MnLCAnPGk4JyldKVxuIn0= -->
-<pre><code>array([(1908, -9223372036854775808,  564, 0),
-       (1909, -9223372036854775808,  601, 0),
-       (1910, -9223372036854775808,  641, 0),
-       (1911, -9223372036854775808,  680, 0),
-       (1912, -9223372036854775808,  799, 0),
-       (1913,                  529,  631, 0),
-       (1914,                  537,  589, 0),
-       (1915,                  584,  669, 0),
-       (1916,                  577,  550, 0),
-       (1917,                  524,  555, 0),
-       (1918,                  493,  474, 0),
-       (1919,                  578,  564, 0),
-       (1920,                  838,  650, 0),
-       (1921,                  948,  668, 0),
-       (1922,                  758,  598, 0),
-       (1923,                  823,  584, 0),
-       (1924,                  798,  737, 0),
-       (1925,                  706,  639, 0),
-       (1926,                  847,  562, 0),
-       (1927,                  975,  597, 0),
-       (1928,                  894,  589, 0),
-       (1929,                  899,  605, 0),
-       (1930,                 1062,  612, 0),
-       (1931,                 1067,  625, 0),
-       (1932,                 1002,  566, 0),
-       (1933,                  927,  700, 0),
-       (1934,                  842,  820, 0),
-       (1935,                  818,  718, 0),
-       (1936,                 1065,  775, 0),
-       (1937,                  979,  821, 0),
-       (1938,                  966,  902, 0),
-       (1939,                  967,  890, 0),
-       (1940,                  817,  872, 0),
-       (1941,                  830,  865, 0),
-       (1942,                  801,  761, 0),
-       (1943,                  669,  563, 0),
-       (1944,                  674,  739, 0),
-       (1945,                  676,  599, 0),
-       (1946,                  684,  792, 0),
-       (1947,                  794,  720, 0),
-       (1948,                  857,  907, 0),
-       (1949,                  829,  896, 0),
-       (1950,                  914, 1027, 0),
-       (1951,                  798,  804, 0),
-       (1952,                  727,  668, 0),
-       (1953,                  801,  656, 0),
-       (1954,                  805,  700, 0),
-       (1955,                  762,  755, 0),
-       (1956,                  857,  780, 0),
-       (1957,                  723,  721, 0),
-       (1958,                  759,  697, 0),
-       (1959,                  687,  726, 0),
-       (1960,                  746,  658, 0),
-       (1961,                  827,  729, 0),
-       (1962,                  817,  707, 0),
-       (1963,                  714,  666, 0),
-       (1964,                  730,  688, 0),
-       (1965,                  611,  669, 0),
-       (1966,                  611,  655, 0),
-       (1967,                  522,  722, 0),
-       (1968,                  536,  614, 0),
-       (1969,                  562,  743, 0),
-       (1970,                  680,  786, 0),
-       (1971,                  648,  691, 0),
-       (1972,                  557,  640, 0),
-       (1973,                  641,  738, 0),
-       (1974,                  671,  696, 0),
-       (1975,                  681,  796, 0),
-       (1976,                  730,  716, 0),
-       (1977,                  831,  859, 0),
-       (1978,                  735,  796, 0),
-       (1979,                  734,  841, 0),
-       (1980,                  820,  757, 0),
-       (1981,                  421,  519, 0),
-       (1982,                  709,  753, 0),
-       (1983,                  770,  724, 0),
-       (1984,                  758,  810, 0),
-       (1985,                  839,  800, 0),
-       (1986,                  797,  794, 0),
-       (1987,                  788,  842, 0),
-       (1988,                  772,  813, 0),
-       (1989,                  698,  774, 0),
-       (1990,                  603,  699, 0),
-       (1991,                  674,  731, 0),
-       (1992,                  733,  599, 0),
-       (1993,                  821,  686, 0),
-       (1994,                  670,  552, 0),
-       (1995,                  749,  791, 0),
-       (1996,                  871,  928, 0),
-       (1997,                  891,  851, 0),
-       (1998,                  965,  876, 0),
-       (1999,                  900,  836, 0),
-       (2000,                  871,  792, 0),
-       (2001,                  804,  772, 0),
-       (2002,                  897,  859, 0),
-       (2003,                  877,  961, 0),
-       (2004,                  897,  949, 0),
-       (2005,                  886,  910, 0),
-       (2006,                  930,  820, 0),
-       (2007,                  968,  867, 0),
-       (2008,                  789,  845, 0),
-       (2009,                  915,  872, 0),
-       (2010,                  859,  818, 0),
-       (2011,                  867,  875, 0),
-       (2012,                  804,  734, 0),
-       (2013,                  650,  853, 0),
-       (2014,                  633,  634, 0),
-       (2015,                  764,  748, 0),
-       (2016,                  680,  878, 0),
-       (2017,                  858,  785, 0),
-       (2018,                  851,  876, 0),
-       (2019,                  943,  901, 0),
-       (2020,                  315,  292, 0),
-       (2021,                  711,  829, 0)],
-      dtype=[(&#39;year&#39;, &#39;&lt;i4&#39;), (&#39;NY&#39;, &#39;&lt;i8&#39;), (&#39;BO&#39;, &#39;&lt;i8&#39;), (&#39;CS&#39;, &#39;&lt;i8&#39;)])</code></pre>
+<!-- rnb-output-begin eyJkYXRhIjoiYXJyYXkoWygnQWxpY2UnLCAyNSksICgnQm9iJywgMzMpLCAoJ0NhdGh5JywgMjIpLCAoJ0RvdWcnLCA1MyldLFxuICAgICAgZHR5cGU9WygnbmFtZScsICc8VTEwJyksICgnYWdlJywgJzxpNCcpXSlcbiJ9 -->
+<pre><code>array([(&#39;Alice&#39;, 25), (&#39;Bob&#39;, 33), (&#39;Cathy&#39;, 22), (&#39;Doug&#39;, 53)],
+      dtype=[(&#39;name&#39;, &#39;&lt;U10&#39;), (&#39;age&#39;, &#39;&lt;i4&#39;)])</code></pre>
 <!-- rnb-output-end -->
 <!-- rnb-chunk-end -->
 <!-- rnb-text-begin -->

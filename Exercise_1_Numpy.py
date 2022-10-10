@@ -59,11 +59,12 @@ def moving_average(arr,window_size):
   i = 0
   moving_averages = []
     
-  while i < len(arr) - window_size + 1:
+  while i < len(arr) - 2*window_size:
     
       # Calculate the average of current window
-      window_average = round(np.sum(arr[
-        i:i+window_size]) / window_size, 2)
+      window_average = round(
+        np.sum(arr[i:i+2*window_size+1]) / (2*window_size+1), 2
+        )
         
       # Store the average of current
       # window in moving average list
