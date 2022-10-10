@@ -24,14 +24,15 @@ def stats(col):
 
 stats(NY)
 
-def stats(data):
+def stats_aggregated(data):
   print("Team        NY      |   BO     |   CS   ")
-  print('Mean       ', round(np.nanmean(data[:1]),1), " | ", round(np.nanmean(data[:2]),1) ," | ",round(np.nanmean(data[:3]),1))
-  print('Med.       ', round(np.nanmedian(data[:1]),1), " | ", round(np.nanmedian(data[:2]),1) ," | ",round(np.nanmedian(data[:3]),1))
-  print('Std.       ', round(np.nanstd(data[:1]),1), " | ", round(np.nanstd(data[:2]),1) ," | ",round(np.nanstd(data[:3]),1))
+  print('Mean       ', round(np.nanmean(data[:,1]),1), " | ", round(np.nanmean(data[:,2]),1) ," | ",round(np.nanmean(data[:,3]),1))
+  print('Med.       ', round(np.nanmedian(data[:,1]),1), " | ", round(np.nanmedian(data[:,2]),1) ," | ",round(np.nanmedian(data[:,3]),1))
+  print('Std.       ', round(np.nanstd(data[:,1]),1), " | ", round(np.nanstd(data[:,2]),1) ," | ",round(np.nanstd(data[:,3]),1))
   pass
 
-stats(data)
+stats_aggregated(data)
+
 # 2 now include in the function the possibility to select a range of years and provide same statistics
 
 def stats_year(yearI, yearE, team):
@@ -56,11 +57,8 @@ def stats_year_david(yearI, yearE, team):
 
 def moving_average(arr,window_size):
   i = 0
-  # Initialize an empty list to store moving averages
   moving_averages = []
     
-  # Loop through the array t o
-  #consider every window of size 3
   while i < len(arr) - window_size + 1:
     
       # Calculate the average of current window
