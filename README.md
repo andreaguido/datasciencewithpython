@@ -8,7 +8,6 @@
 
 ## Lecture 1: basics of Python and NumPy
 ## Lecture 2: Pandas (introduction)
-## Lecture 3: Data Wrangling & aggregation
-## Lecture 4: Plotting and visualizations
-## Lecture 5: Testing
+## Lecture 3-4: Data Wrangling & aggregation
+## Lecture 5: ML applications
 ## Lecture 6: Applied project

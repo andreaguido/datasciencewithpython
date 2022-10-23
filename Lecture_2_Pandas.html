@@ -11,7 +11,6 @@
 
 <meta name="author" content="Andrea Guido" />
 
-<meta name="date" content="2022-09-10" />
 
 <title>Lecture_2_Pandas</title>
 
@@ -167,13 +166,13 @@ pre code {
 
 <h1 class="title toc-ignore">Lecture_2_Pandas</h1>
 <h4 class="author">Andrea Guido</h4>
-<h4 class="date">09/10/2022</h4>
+<h4 class="date">22/10/2022</h4>
 
 </div>
 
 
-<div id="lecture-3---pandas-library" class="section level1">
-<h1>Lecture 3 - PANDAS library</h1>
+<div id="lecture-2---pandas-library" class="section level1">
+<h1>Lecture 2 - PANDAS library</h1>
 <p>Pandas is a library with data manipulation tools that are built on top of and add to those of the established NumPy library. It relies on the NumPy array structure for implementation of its objects and therefore shares many features with NumPy and Matplotlib and is frequently used alongside it. Pandas is also a part of the set of libraries used for scientific computation.</p>
 <div id="why-pandas" class="section level2">
 <h2>Why Pandas?</h2>
@@ -200,10 +199,117 @@ import numpy as np</code></pre>
 </div>
 <div id="series" class="section level1">
 <h1>1. Series</h1>
+<p>The most basic component of DataFrames in Pandas is Series. A series can be thought as a NumPy array, yet with different features.</p>
+<p>The main difference is that, while Numpy arrays have an implicit indexing, Pandas Series have an explicit indexing which makes them more accessible.</p>
+<div id="constructing-series-objects" class="section level2">
+<h2>1.1 Constructing Series objects</h2>
+<pre class="python"><code>pd.Series(np.random.rand(4), index=[1,2,3,4])</code></pre>
+<pre><code>## 1    0.077159
+## 2    0.687030
+## 3    0.279170
+## 4    0.487489
+## dtype: float64</code></pre>
+<pre class="python"><code>pd.Series({&#39;Baseball&#39;:&#39;NY Yankees&#39;, &#39;Football&#39;:&#39;Juventus&#39;, &#39;Tennis&#39;:&#39;Nadal&#39;})
+
+# indexing can subset when importing</code></pre>
+<pre><code>## Baseball    NY Yankees
+## Football      Juventus
+## Tennis           Nadal
+## dtype: object</code></pre>
+<pre class="python"><code>pd.Series({&#39;Baseball&#39;:&#39;NY Yankees&#39;, &#39;Football&#39;:&#39;Juventus&#39;, &#39;Tennis&#39;:&#39;Nadal&#39;}, index = [&#39;Baseball&#39;,&#39;Football&#39;])</code></pre>
+<pre><code>## Baseball    NY Yankees
+## Football      Juventus
+## dtype: object</code></pre>
+<pre class="python"><code>data = pd.Series([0.25, 0.5, 0.75, 1.0])
+data</code></pre>
+<pre><code>## 0    0.25
+## 1    0.50
+## 2    0.75
+## 3    1.00
+## dtype: float64</code></pre>
+<p>Series have 2 main attributes, Index and Values</p>
+<pre class="python"><code>data.index</code></pre>
+<pre><code>## RangeIndex(start=0, stop=4, step=1)</code></pre>
+<pre class="python"><code>data.values</code></pre>
+<pre><code>## array([0.25, 0.5 , 0.75, 1.  ])</code></pre>
+</div>
+<div id="how-to-access-a-series" class="section level2">
+<h2>1.2 How to access a Series</h2>
+<p>Like with a NumPy array, data can be accessed by the associated index via the familiar Python square-bracket notation:</p>
+<pre class="python"><code>data[1]</code></pre>
+<pre><code>## 0.5</code></pre>
+<pre class="python"><code>data[1:3]</code></pre>
+<pre><code>## 1    0.50
+## 2    0.75
+## dtype: float64</code></pre>
+<p>Can we change indexes?</p>
+<pre class="python"><code>data = pd.Series([0.25, 0.5, 0.75, 1.0],
+                 index=[&#39;a&#39;, &#39;b&#39;, &#39;c&#39;, &#39;d&#39;])</code></pre>
+<p>and to access it :</p>
+<pre class="python"><code>data[&#39;b&#39;]</code></pre>
+<pre><code>## 0.5</code></pre>
+<p>We can even use non-contiguous or non-sequential indices:</p>
+<pre class="python"><code>data = pd.Series([0.25, 0.5, 0.75, 1.0],
+                 index=[2, 5, 3, 7])
+data[7]</code></pre>
+<pre><code>## 1.0</code></pre>
+</div>
+<div id="series-as-specialize-dictionaries" class="section level2">
+<h2>1.3 Series as specialize dictionaries</h2>
+<p>In this way, you can think of a Pandas Series a bit like a specialization of a Python dictionary.</p>
+<pre class="python"><code>population_dict = {&#39;California&#39;: 38332521,
+                   &#39;Texas&#39;: 26448193,
+                   &#39;New York&#39;: 19651127,
+                   &#39;Florida&#39;: 19552860,
+                   &#39;Illinois&#39;: 12882135}
+population = pd.Series(population_dict)
+population</code></pre>
+<pre><code>## California    38332521
+## Texas         26448193
+## New York      19651127
+## Florida       19552860
+## Illinois      12882135
+## dtype: int64</code></pre>
+<pre class="python"><code>population[&#39;California&#39;]</code></pre>
+<pre><code>## 38332521</code></pre>
+</div>
 </div>
 <div id="dataframes" class="section level1">
 <h1>2. Dataframes</h1>
-<pre class="python"><code># create a dataframe from dictionary (see Basic Knowledge file for dictionaries)
+<pre class="python"><code># from a series
+
+pd.DataFrame(population, columns=[&#39;Pop&#39;])
+
+# from 2 series (several ways)</code></pre>
+<pre><code>##                  Pop
+## California  38332521
+## Texas       26448193
+## New York    19651127
+## Florida     19552860
+## Illinois    12882135</code></pre>
+<pre class="python"><code>areas_dict = {&#39;California&#39;: 35678,
+                   &#39;New York&#39;: 45789,
+                   &#39;Florida&#39;: 345688,
+                   &#39;Texas&#39;: 457886,
+                   &#39;Illinois&#39;: 34678}
+areas = pd.Series(areas_dict)
+
+pd.DataFrame({&#39;Pop&#39;:population, &#39;Area&#39;:areas})</code></pre>
+<pre><code>##                  Pop    Area
+## California  38332521   35678
+## Florida     19552860  345688
+## Illinois    12882135   34678
+## New York    19651127   45789
+## Texas       26448193  457886</code></pre>
+<pre class="python"><code>pd.DataFrame(np.array([population, areas]).T, columns=[&#39;Pop&#39;,&#39;Area&#39;], index=[population.index])</code></pre>
+<pre><code>##                  Pop    Area
+## California  38332521   35678
+## Texas       26448193   45789
+## New York    19651127  345688
+## Florida     19552860  457886
+## Illinois    12882135   34678</code></pre>
+<pre class="python"><code># create a dataframe from dictionary (more complicated)
+
 data = pd.DataFrame(
     {
         &quot;Name&quot;: [
@@ -241,6 +347,444 @@ pd.DataFrame(np.array([names,age,sex]).T, columns=(&quot;Names&quot;,&quot;Age&q
 <pre><code>##          Names Age  Gender
 ## 0     M. Rossi  22    male
 ## 1  Mme Bianchi  21  female</code></pre>
+<div id="inspecting-a-dataframe" class="section level2">
+<h2>2.1 Inspecting a DataFrame</h2>
+<pre class="python"><code># get info about data variables
+data.info()</code></pre>
+<pre><code>## &lt;class &#39;pandas.core.frame.DataFrame&#39;&gt;
+## RangeIndex: 4 entries, 0 to 3
+## Data columns (total 3 columns):
+##  #   Column  Non-Null Count  Dtype  
+## ---  ------  --------------  -----  
+##  0   Name    3 non-null      object 
+##  1   Age     3 non-null      float64
+##  2   Sex     3 non-null      object 
+## dtypes: float64(1), object(2)
+## memory usage: 224.0+ bytes</code></pre>
+<pre class="python"><code>data.head()</code></pre>
+<pre><code>##                        Name   Age     Sex
+## 0   Braund, Mr. Owen Harris  22.0    male
+## 1  Allen, Mr. William Henry  35.0    male
+## 2  Bonnell, Miss. Elizabeth  58.0  female
+## 3                       NaN   NaN     NaN</code></pre>
+<pre class="python"><code>data.shape</code></pre>
+<pre><code>## (4, 3)</code></pre>
+<pre class="python"><code>data.describe()</code></pre>
+<pre><code>##              Age
+## count   3.000000
+## mean   38.333333
+## std    18.230012
+## min    22.000000
+## 25%    28.500000
+## 50%    35.000000
+## 75%    46.500000
+## max    58.000000</code></pre>
+<pre class="python"><code>data.columns</code></pre>
+<pre><code>## Index([&#39;Name&#39;, &#39;Age&#39;, &#39;Sex&#39;], dtype=&#39;object&#39;)</code></pre>
+<pre class="python"><code>data.index</code></pre>
+<pre><code>## RangeIndex(start=0, stop=4, step=1)</code></pre>
+<div id="checking-nans" class="section level3">
+<h3>2.1.1 Checking NaNs</h3>
+<p>The way in which Pandas handles missing values is constrained by its reliance on the NumPy package, which does not have a built-in notion of NA values for non-floating-point data types.</p>
+<pre class="python"><code># NaNs in the whole database
+
+# function isnull
+data.isnull()
+
+# using indexing on condition</code></pre>
+<pre><code>##     Name    Age    Sex
+## 0  False  False  False
+## 1  False  False  False
+## 2  False  False  False
+## 3   True   True   True</code></pre>
+<pre class="python"><code>data[data.notnull()]
+
+# dropping null</code></pre>
+<pre><code>##                        Name   Age     Sex
+## 0   Braund, Mr. Owen Harris  22.0    male
+## 1  Allen, Mr. William Henry  35.0    male
+## 2  Bonnell, Miss. Elizabeth  58.0  female
+## 3                       NaN   NaN     NaN</code></pre>
+<pre class="python"><code>data.dropna()</code></pre>
+<pre><code>##                        Name   Age     Sex
+## 0   Braund, Mr. Owen Harris  22.0    male
+## 1  Allen, Mr. William Henry  35.0    male
+## 2  Bonnell, Miss. Elizabeth  58.0  female</code></pre>
+<pre class="python"><code>data.dropna(axis=&#39;columns&#39;)
+
+# fill NaN with values</code></pre>
+<pre><code>## Empty DataFrame
+## Columns: []
+## Index: [0, 1, 2, 3]</code></pre>
+<pre class="python"><code>data.fillna(0)
+
+# Check NaNs among columns
+# sum among all columns</code></pre>
+<pre><code>##                        Name   Age     Sex
+## 0   Braund, Mr. Owen Harris  22.0    male
+## 1  Allen, Mr. William Henry  35.0    male
+## 2  Bonnell, Miss. Elizabeth  58.0  female
+## 3                         0   0.0       0</code></pre>
+<pre class="python"><code>data.isnull().sum()
+
+# count number of nas in each row</code></pre>
+<pre><code>## Name    1
+## Age     1
+## Sex     1
+## dtype: int64</code></pre>
+<pre class="python"><code>for i in range(len(data.index)) :
+    print(&quot; Total NaN in row&quot;, i + 1, &quot;:&quot;,
+          data.iloc[i].isnull().sum())</code></pre>
+<pre><code>##  Total NaN in row 1 : 0
+##  Total NaN in row 2 : 0
+##  Total NaN in row 3 : 0
+##  Total NaN in row 4 : 3</code></pre>
+<pre class="python"><code>pass</code></pre>
+</div>
+</div>
+<div id="selecting-rows-and-columns" class="section level2">
+<h2>2.2 Selecting rows and columns</h2>
+<p>Data selection in NumPy can be done in the several ways (indexing = arr[1,3], slicing = arr[:, 1:5], masking = arr[arr&gt;0], and fancy indexing = arr[1, [1,5]]). Pandas allows <em>similar</em> ways to select data from both series and dataframes. Furthermore, there are some built-in functions that allow to subset a dataframe (iloc, loc, ix).</p>
+<pre class="python"><code>series = pd.Series([0.25, 0.5, 0.75, 1.0],
+                 index=[&#39;a&#39;, &#39;b&#39;, &#39;c&#39;, &#39;d&#39;])
+dataframe = pd.DataFrame({
+
+        &quot;Name&quot;: [
+            &quot;Braund, Mr. Owen Harris&quot;,
+            &quot;Allen, Mr. William Henry&quot;,
+            &quot;Bonnell, Miss. Elizabeth&quot;,
+            np.NaN
+        ],
+        &quot;Age&quot;: [22, 35, 58,np.NaN],
+        &quot;Sex&quot;: [&quot;male&quot;, &quot;male&quot;, &quot;female&quot;, np.NaN],
+
+}, index= [&#39;a&#39;,&#39;b&#39;,&#39;c&#39;,&#39;d&#39;])</code></pre>
+<div id="based-on-names-or-number-or-condition" class="section level3">
+<h3>2.2.1 Based on names or number or condition</h3>
+<pre class="python"><code># series
+series[1]</code></pre>
+<pre><code>## 0.5</code></pre>
+<pre class="python"><code>series[&#39;a&#39;]</code></pre>
+<pre><code>## 0.25</code></pre>
+<pre class="python"><code>series[series&gt;0.5]</code></pre>
+<pre><code>## c    0.75
+## d    1.00
+## dtype: float64</code></pre>
+<pre class="python"><code># Dataframes subsetting columns by their name
+data[&quot;Name&quot;]</code></pre>
+<pre><code>## 0     Braund, Mr. Owen Harris
+## 1    Allen, Mr. William Henry
+## 2    Bonnell, Miss. Elizabeth
+## 3                         NaN
+## Name: Name, dtype: object</code></pre>
+<pre class="python"><code>data.Name
+
+# specific rows</code></pre>
+<pre><code>## 0     Braund, Mr. Owen Harris
+## 1    Allen, Mr. William Henry
+## 2    Bonnell, Miss. Elizabeth
+## 3                         NaN
+## Name: Name, dtype: object</code></pre>
+<pre class="python"><code>data[data[&quot;Age&quot;] &lt;30]</code></pre>
+<pre><code>##                       Name   Age   Sex
+## 0  Braund, Mr. Owen Harris  22.0  male</code></pre>
+<p>NOTICE: Among these, slicing may be the source of the most confusion. Notice that when slicing with an explicit index (i.e., data[‘a’:‘c’]), the final index is included in the slice, while when slicing with an implicit index (i.e., data[0:2]), the final index is excluded from the slice.</p>
+</div>
+<div id="indexers-iloc-loc" class="section level3">
+<h3>2.2.2. Indexers iloc, loc</h3>
+<p>These slicing and indexing conventions can be a source of confusion. For example, if your Series has an explicit integer index, an indexing operation such as data[1] will use the explicit indices, while a slicing operation like data[1:3] will use the implicit Python-style index.</p>
+<pre class="python"><code>data = pd.Series([&#39;a&#39;, &#39;b&#39;, &#39;c&#39;], index=[1, 3, 5])
+data
+# explicit index when indexing</code></pre>
+<pre><code>## 1    a
+## 3    b
+## 5    c
+## dtype: object</code></pre>
+<pre class="python"><code>data[1]
+# implicit index when slicing</code></pre>
+<pre><code>## &#39;a&#39;</code></pre>
+<pre class="python"><code>data[1:3]</code></pre>
+<pre><code>## 3    b
+## 5    c
+## dtype: object</code></pre>
+<p>Hence, to solve this confusion, we use indexers functions.</p>
+<ul>
+<li><p>the loc attribute allows indexing and slicing that always references the explicit index</p></li>
+<li><p>the iloc attribute allows indexing and slicing that always references the implicit Python-style index</p></li>
+</ul>
+<pre class="python"><code>series.loc[&#39;a&#39;]</code></pre>
+<pre><code>## 0.25</code></pre>
+<pre class="python"><code>series.iloc[0]</code></pre>
+<pre><code>## 0.25</code></pre>
+<pre class="python"><code>dataframe.loc[&#39;a&#39;]</code></pre>
+<pre><code>## Name    Braund, Mr. Owen Harris
+## Age                        22.0
+## Sex                        male
+## Name: a, dtype: object</code></pre>
+<pre class="python"><code>dataframe.iloc[0]</code></pre>
+<pre><code>## Name    Braund, Mr. Owen Harris
+## Age                        22.0
+## Sex                        male
+## Name: a, dtype: object</code></pre>
+<pre class="python"><code>dataframe.iloc[:,[0,2]]</code></pre>
+<pre><code>##                        Name     Sex
+## a   Braund, Mr. Owen Harris    male
+## b  Allen, Mr. William Henry    male
+## c  Bonnell, Miss. Elizabeth  female
+## d                       NaN     NaN</code></pre>
+<pre class="python"><code>dataframe.loc[:, [&quot;Name&quot;,&quot;Sex&quot;]]</code></pre>
+<pre><code>##                        Name     Sex
+## a   Braund, Mr. Owen Harris    male
+## b  Allen, Mr. William Henry    male
+## c  Bonnell, Miss. Elizabeth  female
+## d                       NaN     NaN</code></pre>
+</div>
+</div>
+</div>
+<div id="concatenation" class="section level1">
+<h1>3. Concatenation</h1>
+<div id="using-concat-function" class="section level2">
+<h2>3.1 Using concat function</h2>
+<p>The function is concat(). It can be used to stack rows or to combine columns by specifying the “axis” argument.</p>
+<pre class="python"><code># define a function for convenience in following examples
+def make_df(cols, ind):
+    &quot;&quot;&quot;Quickly make a DataFrame&quot;&quot;&quot;
+    data = {c: [str(c) + str(i) for i in ind]
+            for c in cols}
+    return pd.DataFrame(data, ind)
+  </code></pre>
+<pre class="python"><code># row concat (default)
+df1 = make_df(&#39;AB&#39;, [1, 2])
+df2 = make_df(&#39;AB&#39;, [3, 4])
+df1</code></pre>
+<pre><code>##     A   B
+## 1  A1  B1
+## 2  A2  B2</code></pre>
+<pre class="python"><code>df2</code></pre>
+<pre><code>##     A   B
+## 3  A3  B3
+## 4  A4  B4</code></pre>
+<pre class="python"><code>pd.concat([df1, df2])
+
+# col concat</code></pre>
+<pre><code>##     A   B
+## 1  A1  B1
+## 2  A2  B2
+## 3  A3  B3
+## 4  A4  B4</code></pre>
+<pre class="python"><code>df3 = make_df(&#39;AB&#39;, [0, 1])
+df4 = make_df(&#39;CD&#39;, [0, 1])
+df3</code></pre>
+<pre><code>##     A   B
+## 0  A0  B0
+## 1  A1  B1</code></pre>
+<pre class="python"><code>df4</code></pre>
+<pre><code>##     C   D
+## 0  C0  D0
+## 1  C1  D1</code></pre>
+<pre class="python"><code>pd.concat([df3, df4], axis=1) # axis = 1 columns, axis = 0 rows</code></pre>
+<pre><code>##     A   B   C   D
+## 0  A0  B0  C0  D0
+## 1  A1  B1  C1  D1</code></pre>
+<p><em>what if duplicate indexes ?</em></p>
+<p>One important difference between np.concatenate and pd.concat is that Pandas concatenation preserves indices, even if the result will have duplicate indices!</p>
+<pre class="python"><code>x = make_df(&#39;AB&#39;, [0, 1])
+y = make_df(&#39;AB&#39;, [2, 3])
+y.index = x.index  # make duplicate indices!
+print(pd.concat([x, y]))</code></pre>
+<pre><code>##     A   B
+## 0  A0  B0
+## 1  A1  B1
+## 0  A2  B2
+## 1  A3  B3</code></pre>
+<p><em>what if indexes not in common?</em></p>
+<p>NaN are created</p>
+<pre class="python"><code>x = make_df(&#39;AB&#39;, [0, 1])
+y = make_df(&#39;AC&#39;, [4, 3])
+x</code></pre>
+<pre><code>##     A   B
+## 0  A0  B0
+## 1  A1  B1</code></pre>
+<pre class="python"><code>y</code></pre>
+<pre><code>##     A   C
+## 4  A4  C4
+## 3  A3  C3</code></pre>
+<pre class="python"><code>print(pd.concat([x, y]))</code></pre>
+<pre><code>##     A    B    C
+## 0  A0   B0  NaN
+## 1  A1   B1  NaN
+## 4  A4  NaN   C4
+## 3  A3  NaN   C3</code></pre>
+</div>
+<div id="using-join" class="section level2">
+<h2>3.2 Using join</h2>
+<p>Why? In the simple examples we just looked at, we were mainly concatenating DataFrames with shared column names. In practice, data from different sources might have different sets of column names, and pd.concat offers several options in this case. Consider the concatenation of the following two DataFrames, which have some (but not all!) columns in common:</p>
+<pre class="python"><code>df5 = make_df(&#39;ABC&#39;, [1, 2])
+df6 = make_df(&#39;BCD&#39;, [3, 4])
+df5</code></pre>
+<pre><code>##     A   B   C
+## 1  A1  B1  C1
+## 2  A2  B2  C2</code></pre>
+<pre class="python"><code>df6</code></pre>
+<pre><code>##     B   C   D
+## 3  B3  C3  D3
+## 4  B4  C4  D4</code></pre>
+<pre class="python"><code>pd.concat([df5, df6])</code></pre>
+<pre><code>##      A   B   C    D
+## 1   A1  B1  C1  NaN
+## 2   A2  B2  C2  NaN
+## 3  NaN  B3  C3   D3
+## 4  NaN  B4  C4   D4</code></pre>
+<p>By default, the entries for which no data is available are filled with NA values.</p>
+<p>To change this, we can specify one of several options for the join and join_axes parameters of the concatenate function. By <em>default</em>, the join is a union of the input columns (join=‘outer’), but we can change this to an <em>intersection</em> of the columns using join=‘inner’:</p>
+<pre class="python"><code>pd.concat([df5, df6], join=&#39;outer&#39;)</code></pre>
+<pre><code>##      A   B   C    D
+## 1   A1  B1  C1  NaN
+## 2   A2  B2  C2  NaN
+## 3  NaN  B3  C3   D3
+## 4  NaN  B4  C4   D4</code></pre>
+<pre class="python"><code>pd.concat([df5, df6], join=&#39;inner&#39;)</code></pre>
+<pre><code>##     B   C
+## 1  B1  C1
+## 2  B2  C2
+## 3  B3  C3
+## 4  B4  C4</code></pre>
+<p>Another option is to directly specify the index of the remaining columns using the join_axes argument, which takes a list of index objects. Here we’ll specify that the returned columns should be the same as those of the first input:</p>
+<pre class="python"><code>df5</code></pre>
+<pre><code>##     A   B   C
+## 1  A1  B1  C1
+## 2  A2  B2  C2</code></pre>
+<pre class="python"><code>df6</code></pre>
+<pre><code>##     B   C   D
+## 3  B3  C3  D3
+## 4  B4  C4  D4</code></pre>
+<pre class="python"><code>pd.concat([df5, df6.reindex(columns=df5.columns)]) # in the book you find a depr. version of join_axes</code></pre>
+<pre><code>##      A   B   C
+## 1   A1  B1  C1
+## 2   A2  B2  C2
+## 3  NaN  B3  C3
+## 4  NaN  B4  C4</code></pre>
+</div>
+<div id="append-method" class="section level2">
+<h2>3.3 Append method</h2>
+<pre class="python"><code>df1.append(df2)</code></pre>
+<pre><code>##     A   B
+## 1  A1  B1
+## 2  A2  B2
+## 3  A3  B3
+## 4  A4  B4</code></pre>
+</div>
+</div>
+<div id="combining-dataframes" class="section level1">
+<h1>4 Combining dataframes</h1>
+<p>The pd.merge() function implements a number of types of joins: the one-to-one, many-to-one, and many-to-many joins. All three types of joins are accessed via an identical call to the pd.merge() interface; the type of join performed depends on the form of the input data. Here we will show simple examples of the three types of merges, and discuss detailed options further below.</p>
+<div id="joins" class="section level2">
+<h2>4.1 1-1 joins</h2>
+<p>Perhaps the simplest type of merge expresion is the one-to-one join, which is in many ways very similar to the column-wise concatenation seen in Combining Datasets: Concat &amp; Append. As a concrete example, consider the following two DataFrames which contain information on several employees in a company:</p>
+<pre class="python"><code>df1 = pd.DataFrame({&#39;employee&#39;: [&#39;Bob&#39;, &#39;Jake&#39;, &#39;Lisa&#39;, &#39;Sue&#39;],
+                    &#39;group&#39;: [&#39;Accounting&#39;, &#39;Engineering&#39;, &#39;Engineering&#39;, &#39;HR&#39;]})
+df2 = pd.DataFrame({&#39;employee&#39;: [&#39;Lisa&#39;, &#39;Bob&#39;, &#39;Jake&#39;, &#39;Sue&#39;],
+                    &#39;hire_date&#39;: [2004, 2008, 2012, 2014]})
+                    
+df3 = pd.merge(df1, df2)
+df3</code></pre>
+<pre><code>##   employee        group  hire_date
+## 0      Bob   Accounting       2008
+## 1     Jake  Engineering       2012
+## 2     Lisa  Engineering       2004
+## 3      Sue           HR       2014</code></pre>
+<p>The pd.merge() function recognizes that each DataFrame has an “employee” column, and automatically joins using this column as a key</p>
+</div>
+<div id="n-1-joins" class="section level2">
+<h2>4.2 N-1 joins</h2>
+<p>Many-to-one joins are joins in which one of the two key columns contains duplicate entries. For the many-to-one case, the resulting DataFrame will preserve those duplicate entries as appropriate. Consider the following example of a many-to-one join:</p>
+<pre class="python"><code>df4 = pd.DataFrame({&#39;group&#39;: [&#39;Accounting&#39;, &#39;Engineering&#39;, &#39;HR&#39;],
+                    &#39;supervisor&#39;: [&#39;Carly&#39;, &#39;Guido&#39;, &#39;Steve&#39;]})
+df3</code></pre>
+<pre><code>##   employee        group  hire_date
+## 0      Bob   Accounting       2008
+## 1     Jake  Engineering       2012
+## 2     Lisa  Engineering       2004
+## 3      Sue           HR       2014</code></pre>
+<pre class="python"><code>df4                 </code></pre>
+<pre><code>##          group supervisor
+## 0   Accounting      Carly
+## 1  Engineering      Guido
+## 2           HR      Steve</code></pre>
+<pre class="python"><code>pd.merge(df3, df4)</code></pre>
+<pre><code>##   employee        group  hire_date supervisor
+## 0      Bob   Accounting       2008      Carly
+## 1     Jake  Engineering       2012      Guido
+## 2     Lisa  Engineering       2004      Guido
+## 3      Sue           HR       2014      Steve</code></pre>
+</div>
+<div id="n-n-joins" class="section level2">
+<h2>4.3 N-N joins</h2>
+<p>Many-to-many joins are a bit confusing conceptually, but are nevertheless well defined. If the key column in both the left and right array contains duplicates, then the result is a many-to-many merge. This will be perhaps most clear with a concrete example. Consider the following, where we have a DataFrame showing one or more skills associated with a particular group. By performing a many-to-many join, we can recover the skills associated with any individual person:</p>
+<pre class="python"><code>df5 = pd.DataFrame({&#39;group&#39;: [&#39;Accounting&#39;, &#39;Accounting&#39;,
+                              &#39;Engineering&#39;, &#39;Engineering&#39;, &#39;HR&#39;, &#39;HR&#39;],
+                    &#39;skills&#39;: [&#39;math&#39;, &#39;spreadsheets&#39;, &#39;coding&#39;, &#39;linux&#39;,
+                               &#39;spreadsheets&#39;, &#39;organization&#39;]})
+df5</code></pre>
+<pre><code>##          group        skills
+## 0   Accounting          math
+## 1   Accounting  spreadsheets
+## 2  Engineering        coding
+## 3  Engineering         linux
+## 4           HR  spreadsheets
+## 5           HR  organization</code></pre>
+<pre class="python"><code>df1</code></pre>
+<pre><code>##   employee        group
+## 0      Bob   Accounting
+## 1     Jake  Engineering
+## 2     Lisa  Engineering
+## 3      Sue           HR</code></pre>
+<pre class="python"><code>pd.merge(df1, df5)</code></pre>
+<pre><code>##   employee        group        skills
+## 0      Bob   Accounting          math
+## 1      Bob   Accounting  spreadsheets
+## 2     Jake  Engineering        coding
+## 3     Jake  Engineering         linux
+## 4     Lisa  Engineering        coding
+## 5     Lisa  Engineering         linux
+## 6      Sue           HR  spreadsheets
+## 7      Sue           HR  organization</code></pre>
+</div>
+<div id="specification-of-the-merge-key" class="section level2">
+<h2>4.4 Specification of the Merge Key</h2>
+<pre class="python"><code>## ON
+df1</code></pre>
+<pre><code>##   employee        group
+## 0      Bob   Accounting
+## 1     Jake  Engineering
+## 2     Lisa  Engineering
+## 3      Sue           HR</code></pre>
+<pre class="python"><code>df2</code></pre>
+<pre><code>##   employee  hire_date
+## 0     Lisa       2004
+## 1      Bob       2008
+## 2     Jake       2012
+## 3      Sue       2014</code></pre>
+<pre class="python"><code>pd.merge(df1, df2, on=&#39;employee&#39;)</code></pre>
+<pre><code>##   employee        group  hire_date
+## 0      Bob   Accounting       2008
+## 1     Jake  Engineering       2012
+## 2     Lisa  Engineering       2004
+## 3      Sue           HR       2014</code></pre>
+<p>At times you may wish to merge two datasets with different column names; for example, we may have a dataset in which the employee name is labeled as “name” rather than “employee”. In this case, we can use the left_on and right_on keywords to specify the two column names:</p>
+<pre class="python"><code>## LEFT_ON and RIGHT_ON
+df3 = pd.DataFrame({&#39;name&#39;: [&#39;Bob&#39;, &#39;Jake&#39;, &#39;Lisa&#39;, &#39;Sue&#39;],
+                    &#39;salary&#39;: [70000, 80000, 120000, 90000]})
+pd.merge(df1, df3, left_on=&quot;employee&quot;, right_on=&quot;name&quot;)</code></pre>
+<pre><code>##   employee        group  name  salary
+## 0      Bob   Accounting   Bob   70000
+## 1     Jake  Engineering  Jake   80000
+## 2     Lisa  Engineering  Lisa  120000
+## 3      Sue           HR   Sue   90000</code></pre>
+</div>
+<div id="read-the-example-us-states-and-replicate-it" class="section level2">
+<h2>READ THE EXAMPLE US STATES AND REPLICATE IT</h2>
+</div>
 </div>
 
 
