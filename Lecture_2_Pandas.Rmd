@@ -189,19 +189,21 @@ The way in which Pandas handles missing values is constrained by its reliance on
 # function isnull
 data.isnull()
 
-# using indexing on condition
-data[data.notnull()]
-
-# dropping null
-data.dropna()
-data.dropna(axis='columns')
-
-# fill NaN with values
-data.fillna(0)
-
 # Check NaNs among columns
 # sum among all columns
 data.isnull().sum()
+
+# using indexing on condition
+#data[data.notnull()]
+
+# dropping null 
+# by default is axis = 0 (rows) hence drop any rows that has an NaN
+# argument how = {any, all}
+data.dropna(axis=0, how="all")
+data.dropna(axis=1, how="all")
+
+# fill NaN with values
+data.fillna(0)
 
 # count number of nas in each row
 for i in range(len(data.index)) :
@@ -325,11 +327,19 @@ One important difference between np.concatenate and pd.concat is that Pandas con
 ```{python}
 x = make_df('AB', [0, 1])
 y = make_df('AB', [2, 3])
+x
+y
 y.index = x.index  # make duplicate indices!
 print(pd.concat([x, y]))
+df=pd.concat([x, y])
+df
+# Subsetting a df with multiple indexes
+df[1] # Key error
+df.iloc[1]
+df.loc[1]
 ```
 
-*what if indexes not in common?*
+*what if indexes/columns not in common?*
 
 NaN are created
 
@@ -363,11 +373,12 @@ pd.concat([df5, df6], join='outer')
 pd.concat([df5, df6], join='inner')
 ```
 
-Another option is to directly specify the index of the remaining columns using the join_axes argument, which takes a list of index objects. Here we'll specify that the returned columns should be the same as those of the first input:
+Another option is to directly specify the index of the remaining columns using the join_axes (DEPRECATED) argument, which takes a list of index objects. Here we'll specify that the returned columns should be the same as those of the first input:
 
 ```{python}
 df5
 df6
+df6.reindex(columns=df5.columns)
 pd.concat([df5, df6.reindex(columns=df5.columns)]) # in the book you find a depr. version of join_axes
 ```
 
@@ -428,17 +439,19 @@ pd.merge(df1, df5)
 
 ```{python}
 ## ON
-df1
+df1is labeled as "name" rather than "emplo
 df2
 pd.merge(df1, df2, on='employee')
 ```
 
-At times you may wish to merge two datasets with different column names; for example, we may have a dataset in which the employee name is labeled as "name" rather than "employee". In this case, we can use the left_on and right_on keywords to specify the two column names:
+At times you may wish to merge two datasets with different column names; for example, we may have a dataset in which the employee name yee". In this case, we can use the left_on and right_on keywords to specify the two column names:
 
 ```{python}
 ## LEFT_ON and RIGHT_ON
-df3 = pd.DataFrame({'name': ['Bob', 'Jake', 'Lisa', 'Sue'],
+df3 = pd.DataFrame({'name': ['Bob', 'Jake', 'Sue', 'Lisa'],
                     'salary': [70000, 80000, 120000, 90000]})
+df1
+df3
 pd.merge(df1, df3, left_on="employee", right_on="name")
 ```
 
