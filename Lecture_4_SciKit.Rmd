@@ -1,0 +1,195 @@
+---
+title: "Lecture 4 - SciKit"
+author: "Andrea Guido"
+date: "13/11/2022"
+output: html_document
+---
+
+```{r setup, include=FALSE}
+reticulate::repl_python()
+```
+
+- Machine learning is about creating models to explain data. The goal of the model is to give  *labels* to datapoints based on their *features*
+
+- The learning side is because parameters of the models change and adapt based on data fed. Models "train" on a dataset, to then make forecasts on other datasets. A model can be re-fined based on accuracy of its predictions.
+
+- Machine learning distinguishes into supervised and unsupervised based on whether labels are given or not.
+
+In this class you will learn how to perform supervised machine learning techniques. 
+
+We will start with discrete labels. These models are used, for example, when emails need to be classified into spam or not, or if a bank customer is worth a loan or not. 
+
+# Some probability concepts:
+
+given some L= labels, our model will estimate:
+
+* $P(L~|~{\rm features}) = \frac{P({\rm features}~|~L)P(L)}{P({\rm features})}$ (conditional probability, check Bayes theorem)
+
+* $\frac{P(L_1~|~{\rm features})}{P(L_2~|~{\rm features})} = \frac{P({\rm features}~|~L_1)}{P({\rm features}~|~L_2)}\frac{P(L_1)}{P(L_2)}$ (ratio of probabilities)
+
+The models change based on the assumption made on how to calculate the probability of a certain feature, given the label.
+
+# Supervised learning : Naive Bayesian Models
+
+```{python}
+import numpy as np
+import matplotlib.pyplot as plt # INSTALL IT!
+import seaborn as sns; sns.set() # INSTALL IT!
+```
+
+
+Let's simulate some data.
+
+
+```{python}
+from sklearn.datasets import make_blobs
+X, y = make_blobs(100, 2, centers=2, random_state=2, cluster_std=1.5) # built-in function to simulate data in blobs
+
+X[:5,]
+
+y[:5,] # 0 = Red
+
+
+plt.scatter(X[:, 0], X[:, 1], c=y, s=50, cmap='bwr'); plt.xlabel("Feature 1"); plt.ylabel("Feature 2")
+plt.show()
+plt.close('all') # close the graph to create new ones down
+```
+
+
+Model assumption : "naive" = Gaussian. One extremely fast way to create a simple model is to assume that the data is described by a Gaussian distribution with no covariance between dimensions. 
+
+```{python}
+fig, ax = plt.subplots()
+
+ax.scatter(X[:, 0], X[:, 1], c=y, s=50, cmap='RdBu')
+ax.set_title('Naive Bayes Model', size=14)
+plt.xlabel("Feature 1"); plt.ylabel("Feature 2")
+
+xlim = (-8, 8)
+ylim = (-15, 5)
+
+xg = np.linspace(xlim[0], xlim[1], 60)
+yg = np.linspace(ylim[0], ylim[1], 40)
+xx, yy = np.meshgrid(xg, yg)
+Xgrid = np.vstack([xx.ravel(), yy.ravel()]).T
+
+for label, color in enumerate(['red', 'blue']):
+    mask = (y == label)
+    mu, std = X[mask].mean(0), X[mask].std(0)
+    P = np.exp(-0.5 * (Xgrid - mu) ** 2 / std ** 2).prod(1)
+    Pm = np.ma.masked_array(P, P < 0.03)
+    ax.pcolorfast(xg, yg, Pm.reshape(xx.shape), alpha=0.5,
+                  cmap=color.title() + 's')
+    ax.contour(xx, yy, P.reshape(xx.shape),
+               levels=[0.01, 0.1, 0.5, 0.9],
+               colors=color, alpha=0.2)
+    
+ax.set(xlim=xlim, ylim=ylim)
+
+plt.show()
+#plt.close('all')
+```
+
+Let's estimate the model and fit it to our data
+
+```{python}
+from sklearn.naive_bayes import GaussianNB
+model = GaussianNB()
+model.fit(X, y);
+
+# check % of obs in each class
+model.class_count_
+
+# check model parameters
+model.theta_ # mean (mu) for each label x features
+model.var_ # variance (sigma)
+y_hat=model.predict(X)
+from  sklearn.metrics import accuracy_score
+accuracy_score(y,y_hat)
+```
+
+The Likelihood function used : $P(Feature_i \mid Label) = \frac{1}{\sqrt{2\pi\sigma^2_y}} \exp\left(-\frac{(x_i - \mu_y)^2}{2\sigma^2_y}\right)$
+
+Now let's generate some new data and predict the label:
+
+```{python}
+rng = np.random.RandomState(0)
+Xnew,ynew = make_blobs(100, 2, centers=2, random_state=2, cluster_std = 4)
+plt.scatter(X[:,0], X[:,1], c=y, cmap='bwr')
+plt.scatter(Xnew[:, 0], Xnew[:, 1], c=ynew, s=80, cmap="bwr",  edgecolor='y', marker='^'); plt.xlabel("Feature 1"); plt.ylabel("Feature 2")
+plt.show()
+
+ynew_hat = model.predict(Xnew)
+```
+
+```{python}
+plt.close('all')
+plt.scatter(Xnew[:, 0], Xnew[:, 1], marker='^',c=ynew, s=70, cmap='bwr', alpha=0.3)
+ax.set(xlim=xlim, ylim=ylim)
+plt.scatter(Xnew[:, 0], Xnew[:, 1],c=ynew_hat, s=20, cmap='bwr', alpha=0.6)
+plt.show()
+plt.close('all')
+```
+
+```{python}
+import pandas as p
+yprob = model.predict_proba(Xnew)
+df = p.DataFrame({'Feature1': Xnew[:,0], 'Feature2': Xnew[:,1], 'Prob_red':yprob[:,0].round(2), 'Actual_red':1-ynew})
+df.head
+```
+
+```{python}
+from sklearn.metrics import accuracy_score
+accuracy_score(ynew, ynew_hat)
+
+# holdouts
+from sklearn.model_selection import train_test_split, cross_val_score
+
+X1, X2, y1, y2 = train_test_split(X, y, random_state=3, train_size = 0.5)
+
+X1.shape # half of X
+
+model.fit(X1, y1)
+
+y2_model=model.predict(X2)
+accuracy_score(y2, y2_model)
+
+# cross-validation
+y2_model=model.fit(X1,y1).predict(X2)
+y1_model=model.fit(X2,y2).predict(X1)
+accuracy_score(y1,y1_model); accuracy_score(y2,y2_model)
+cross_val_score(model, X, y, cv=2)
+```
+
+# Real data : iris database
+
+```{python}
+import seaborn as sns
+iris = sns.load_dataset('iris')
+iris.head()
+```
+
+```{python}
+import seaborn as sns; sns.set()
+sns.pairplot(iris, hue='species', size=1.5);
+plt.show()
+
+# prepare x array with data
+X_iris = iris.drop('species', axis=1)
+X_iris.shape
+
+# prepare y vector with labels
+y_iris = iris['species']
+y_iris.shape
+```
+
+```{python}
+Xtrain, Xtest, ytrain, ytest = train_test_split(X_iris, y_iris,
+                                                random_state=1)
+
+model = GaussianNB()
+model.fit(Xtrain, ytrain)                  #  fit model to data
+y_model = model.predict(Xtest)             #  predict on new data
+accuracy_score(ytest, y_model)
+cross_val_score(model, X_iris, y_iris, cv=5)
+```

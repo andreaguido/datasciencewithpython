@@ -106,7 +106,7 @@ The pivot table takes simple column-wise data as input, and groups the entries i
 
 ```{python}
 df_mix.groupby(['key', 'function']).mean().unstack()
-df_mix.pivot_table('data', index="key", columns='function')
+df_mix.pivot_table('data', index="key", columns='function', aggfunc="mean")
 ```
 
 # Exercises Lecture 3
