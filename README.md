@@ -1,6 +1,8 @@
 # datasciencewithpython
 Msc in data science
 
+Download this folder at the beginning of your class. Should the instructor make changes to the folder and its content, you will be notified and asked to re-download the folder. In this way, you will stay up-to-date.
+
 ## Pre-requisites: 
 
 - reading the first three chapters of https://theeffectbook.net/
