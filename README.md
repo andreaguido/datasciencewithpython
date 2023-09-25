@@ -19,7 +19,7 @@ Download this folder at the beginning of your class. Should the instructor make 
 * [Pandas manipulations](https://github.com/andreaguido/datasciencewithpython/blob/main/Lecture_3_Pandas.Rmd)
 ## Session 5: ML applications
 * [Scikit learn](https://github.com/andreaguido/datasciencewithpython/blob/main/Lecture_4_SciKit.Rmd)
-## Session 6: Applied project
+## Exam: Applied project
 Ask your instructor!
 
 ## Reference book: 
