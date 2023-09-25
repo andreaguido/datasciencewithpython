@@ -1,5 +1,5 @@
 # datasciencewithpython
- for master class
+Msc in data science
 
 ## Pre-requisites: 
 
