@@ -302,9 +302,7 @@ def make_df(cols, ind):
             for c in cols}
     return pd.DataFrame(data, ind)
   
-```
 
-```{python}
 # row concat (default)
 df1 = make_df('AB', [1, 2])
 df2 = make_df('AB', [3, 4])

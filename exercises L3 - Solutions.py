@@ -57,18 +57,17 @@ df.head()
 df_tab3= df.loc[:,["state","y_ft_employment_before","y_ft_employment_after"]].groupby("state").mean().T
 df_tab3
 
-# ## 2. Compute 3. row
+# ## 2. Compute 3rd row
 
 ## one way
-import copy
 df_tab3row = (df_tab3.T)
 df_tab3row["diff_ymean"]= df_tab3row["y_ft_employment_after"]-df_tab3row["y_ft_employment_before"]
 df_tab3row["diff_ymean"]
+df_tab3row.T
 
-# ## 3. Compute the average change in wages after the introduction of the law in e
-# 
-# the change is given by MeanWage|treatment=1 - Mean|treatment=0
+# ## 3. Compute the difference of differences : average change in wages after the introduction of the law
 
+df_tab3row.loc["NJ", "diff_ymean"] - df_tab3row.loc["PA", "diff_ymean"]
 
 
 # # Visualizing
@@ -98,12 +97,10 @@ x_bins = np.arange(4.20,5.60,0.1)
 plt.hist(w_before_nj, x_bins, alpha=0.5, label='NJ', density=True)
 plt.hist(w_before_pa, x_bins, alpha=0.5, label='PA', density=True)
 
-
 # ## 3. Plot the change in employment before and after the introduction, by treatment
 # 
 # the plot used is a line plot of average values of y_ft_employment
 
 df_diff_diff = df.groupby("state").mean().T.loc[["y_ft_employment_before","y_ft_employment_after"]]
 df_diff_diff.plot()
-df_diff_diff
-
+plt.show()
