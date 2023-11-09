@@ -1,6 +1,3 @@
-#!/usr/bin/env python
-# coding: utf-8
-
 # # Exercises Lecture 3
 
 # # Card and Krueger (1994) available <a href="https://davidcard.berkeley.edu/papers/njmin-aer.pdf">here</a>

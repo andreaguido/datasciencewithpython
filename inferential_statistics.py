@@ -1,3 +1,7 @@
+# cleaning memory
+for v in dir(): del globals()[v]
+pass
+
 # Importing libraries
 import numpy as np
 import pandas as pd
