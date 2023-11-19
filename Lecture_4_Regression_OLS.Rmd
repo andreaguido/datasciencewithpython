@@ -1,0 +1,65 @@
+---
+title: "Lecture 4 - Regression models - OLS"
+author: "Andrea Guido"
+date: "13/11/2022"
+output: html_document
+---
+
+```{r setup, include=FALSE}
+reticulate::repl_python()
+```
+
+```{python}
+import wooldridge as wool
+import pandas as pd
+import numpy as np
+import statsmodels
+from statsmodels.formula.api import ols
+import matplotlib.pyplot as plt
+
+
+# import data
+df=wool.data('wage1')
+wool.data('wage1', description=True)
+```
+
+# HP: does education correlate with a one's wage?
+
+```{python}
+## create the formula of your model
+formula = 'wage ~ educ'
+
+
+## set up the model
+mod = ols(formula, data=df)
+dir(mod)
+```
+
+
+```{python}
+## get model fit results
+res = mod.fit()
+print(res.summary())
+```
+```{python}
+
+
+wage_hat = res.fittedvalues
+
+plt.scatter('educ', 'wage', data=df)
+plt.plot(df['educ'], wage_hat, 'r')
+plt.xlabel('Education')
+plt.ylabel('Wage')
+plt.show()
+pass
+```
+
+# Variable transformation (log)
+```{python}
+df['wage_log'] = np.log(df['wage'])
+formula = 'wage_log ~ educ'
+res = ols(formula, data=df).fit()
+print(res.summary().tables[1])
+
+```
+
